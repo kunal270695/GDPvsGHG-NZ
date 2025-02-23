@@ -1,0 +1,920 @@
+---
+title: "Group-Ass1- technical report"
+author: "Kunal, Jacob and Devanshi"
+date: "2024-08-26"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Installing required libraries and preparing the environment
+
+```{r}
+
+options(repos = "https://cran.rstudio.com/")
+install.packages("tidyverse")
+install.packages("dyplr")
+install.packages("ggplot2")
+install.packages("mice")
+install.packages("knitr")
+install.packages("corrplot")
+install.packages("reshape2")
+install.packages("janitor")
+install.packages("imputeTS")
+install.packages("skimr")
+library(skimr)
+library(imputeTS)
+library(janitor)
+library(tidyverse)
+library(ggplot2)
+library(mice)
+library(knitr)
+library(corrplot)
+library(reshape2)
+library(forecast)
+library(tseries)
+
+
+```
+
+```{r}
+#set working directory
+
+setwd("~/Documents/Data Intelligence")
+
+```
+
+#### Importing the datasets
+
+```{r}
+
+gdp <- read_csv("Total-GDP-NZ.csv", show_col_types = FALSE)
+total_co2 <- read_csv("Total-CO2.csv", show_col_types = FALSE)
+ann_co2 <- read_csv("Ann-CO2.csv", show_col_types = FALSE)
+ann_ghg <- read_csv("Ann-GHG-NZ.csv", show_col_types = FALSE)
+co2_sector <- read_csv("CO2-sector.csv", show_col_types = FALSE)
+gdp_pc <- read_csv("GDP-PC-NZ.csv", show_col_types = FALSE)
+ghg_gas <- read_csv("GHG-Gas.csv", show_col_types = FALSE)
+ghg_sector <- read_csv("GHG-sector.csv", show_col_types = FALSE)
+ghg_pc <- read_csv("GHG_per_capita.csv", show_col_types = FALSE)
+
+```
+
+#### Descriptive Statistics of all the datasets
+
+```{r}
+#Annual GDP
+
+head(gdp)
+tail(gdp)
+summary(gdp)
+
+```
+
+```{r}
+#Cumulative annual CO2
+
+head(total_co2)
+tail(total_co2)
+summary(total_co2)
+
+```
+
+```{r}
+
+#Annual CO2
+
+head(ann_co2)
+tail(ann_co2)
+summary(ann_co2)
+```
+
+```{r}
+#Annual GHG
+
+head(ann_ghg)
+tail(ann_ghg)
+summary(ann_ghg)
+
+```
+
+```{r}
+
+#Cumulative CO2 emissions from multiple sources NZ
+
+head(co2_sector)
+tail(co2_sector)
+summary(co2_sector)
+```
+
+```{r}
+
+#GDP per capital NZ
+
+head(gdp_pc)
+tail(gdp_pc)
+summary(gdp_pc$`GDP per capita`)
+
+```
+
+```{r}
+
+#GHG emissions from various gases 
+
+head(ghg_gas)
+tail(ghg_gas)
+summary(ghg_gas)
+```
+
+```{r}
+
+#GHG emissions from various sectors in NZ 
+head(ghg_sector)
+tail(ghg_sector)
+summary(ghg_sector)
+```
+
+```{r}
+#GHG per capita
+
+ghg_pc <- ghg_pc %>% 
+  filter(Entity == "New Zealand")
+  
+head(ghg_pc)
+tail(ghg_pc)
+summary(ghg_pc$`Per-capita greenhouse gas emissions in CO₂ equivalents`)
+
+
+```
+
+#### Data Preparation for Analysis before joining
+
+#Since most of the data is available from 1990 to 2022, we filtered all the datasets to show from 1990 to recent.
+
+```{r}
+
+ann_co2 <- ann_co2 %>%
+  filter(ann_co2$Year >= 1990)
+
+```
+
+```{r}
+ann_ghg <- ann_ghg %>% 
+  filter(Year >= 1990)
+```
+
+```{r}
+ghg_gas <- ghg_gas %>%
+  filter(Year >= 1990)
+```
+
+```{r}
+total_co2 <- total_co2 %>% 
+  filter(Year >= 1990)
+```
+
+#### Checking for any missing values in all the datasets
+
+```{r}
+sum(is.na(ann_co2))
+sum(is.na(ann_ghg))
+sum(is.na(co2_sector))
+sum(is.na(gdp))
+sum(is.na(gdp_pc))
+sum(is.na(ghg_gas))
+sum(is.na(ghg_sector))
+sum(is.na(total_co2))
+```
+
+#### Merging the Annual GHG and Sector Wise GHG dataset for predictive analytics techniques like correlation analysis and regression analysis
+
+```{r}
+
+#Preparing the data
+ghg1 <- left_join(ghg_gas, ann_ghg, by = "Year") #combining nitroux oxide, methane and CO2 emissions to annula ghg datdset
+ghg1 <- clean_names(ghg1)
+
+ghg1$Annual_GHG <- ghg1$annual_greenhouse_gas_emissions_in_co2_equivalents
+ghg1$annual_greenhouse_gas_emissions_in_co2_equivalents <- NULL
+
+ghg1 <- ghg1 %>%
+  select(year, Annual_GHG, everything()) #rearranging columns by year, Annual GHG and then the other gases
+
+colnames(ghg1) <- c("Year", "Annual_GHG", "Nitrous_Oxide", "Methane", "CO2")
+
+#custom summary table
+summary_table <- data.frame(
+  Variable = colnames(ghg1)[-1],  # Exclude 'Year'
+  N = nrow(ghg1),
+  Mean = sapply(ghg1[-1], mean, na.rm = TRUE),
+  Median = sapply(ghg1[-1], median, na.rm = TRUE),
+  SD = sapply(ghg1[-1], sd, na.rm = TRUE),
+  Min = sapply(ghg1[-1], min, na.rm = TRUE),
+  Max = sapply(ghg1[-1], max, na.rm = TRUE)
+)
+
+# Print the summary
+print(summary_table)
+
+```
+
+#### Correlation Analysis to check which gas highly correlates with Annual GHG emissions in NZ
+
+```{r}
+colnames(ghg1) #checking column names to make sure all the columns are aligned properly
+```
+
+```{r}
+
+#correlation matrix to check which gases have high correlation with Annual GHG emissions
+
+ghg_corr <- ghg1 %>%
+  select(Annual_GHG, Nitrous_Oxide, 
+         Methane, CO2)
+
+correlation_matrix <- cor(ghg_corr, use = "complete.obs")
+
+kable(correlation_matrix, digits = 2, caption = "Correlation Matrix for GHG Emissions Data") #using kable to represent data in a proper tabular format
+
+
+```
+
+Correlation heatmap
+
+```{r}
+
+#correlation heatmap of Annual GHG emissions and other gases
+
+correlation_data <- melt(correlation_matrix)
+
+ggplot(data = correlation_data, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "red", high = "green", mid = "yellow", 
+                       midpoint = 0, limit = c(-1, 1), space = "Lab", 
+                       name = "Correlation") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1),
+        axis.text.y = element_text(size = 12)) +
+  labs(title = "Correlation Heatmap for GHG Emissions Data", x = "", y = "")
+```
+
+Regression Analysis
+
+```{r}
+#regression analysis to check how other gases influence Annual GHG in NZ
+
+colnames(ghg1)
+ghg_reg <- lm(Annual_GHG ~  + Annual_GHG + Nitrous_Oxide + Methane + CO2, data = ghg1)
+summary(ghg_reg)
+
+kable(summary(ghg_reg)$coefficients, caption = "Regression Coefficients")
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared <- summary(ghg_reg)$adj.r.squared
+multiple_r <- summary(ghg_reg)$r.squared
+f_statistic <- summary(ghg_reg)$fstatistic[1]
+
+cat("Adjusted R-squared:", adjusted_r_squared, "\n")
+cat("Multiple R:", multiple_r, "\n")
+cat("F-statistic:", f_statistic, "\n")
+
+
+#plotting regression 
+
+ghg1$predicted_Annual_GHG <- predict(ghg_reg, newdata = ghg1)
+
+ggplot(ghg1, aes(x = Annual_GHG, y = predicted_Annual_GHG)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = "red") +
+  labs(title = "Actual vs. Predicted Annual GHG",
+       x = "Actual Annual GHG",
+       y = "Predicted Annual GHG")
+
+```
+
+#### Analyzing GDP, Annual GHG, and Annual CO2 emissions to see which variable has a high correlation with GDP in New Zealand
+
+```{r}
+
+#merging gdp, ghg per capita, annual ghg and annual CO2 datasets
+
+gdp1 <- left_join(gdp_pc, ann_ghg, by = "Year") 
+gdp1
+
+colnames(gdp1)
+gdp1 <- gdp1 %>%
+  select(Year, `GDP per capita`, everything())
+
+gdp1 <- left_join(gdp1, ann_co2, by = "Year")
+gdp1
+
+#filtering ghg per capita data from the year 1990 to 2022
+ghg_pc <- ghg_pc %>%
+  filter(Year >= 1990)
+
+gdp1 <- left_join(gdp1, ghg_pc, by = "Year")
+gdp1$Entity <- NULL 
+gdp1$Code <- NULL
+gdp1$predicted_GDP_per_capita <- NULL
+
+
+colnames(gdp1) <- c("Year", "GDP_per_capita", "Annual_GHG", "Annual_CO2", "GHG_per_capita")
+
+print(gdp1)
+
+```
+
+```{r}
+#Descriptive statistics
+
+summary(gdp1)
+
+summary_gdp1 <- data.frame(
+  Variable = colnames(gdp1)[-1],  # Exclude 'Year'
+  N = nrow(gdp1),
+  Mean = sapply(gdp1[-1], mean, na.rm = TRUE),
+  Median = sapply(gdp1[-1], median, na.rm = TRUE),
+  SD = sapply(gdp1[-1], sd, na.rm = TRUE),
+  Min = sapply(gdp1[-1], min, na.rm = TRUE),
+  Max = sapply(gdp1[-1], max, na.rm = TRUE)
+)
+
+print(summary_gdp1)
+```
+
+#### Correlation Analysis of GDP per capita, Annual GHG and CO2 emissions
+
+```{r}
+#correlatoion analysis for GDP and Annual GHG Emissions in NZ 
+
+colnames(gdp1)
+gdp_corr <- gdp1 %>%
+  select(GDP_per_capita,Annual_GHG, Annual_CO2, GHG_per_capita)
+
+gdp_corr_matrix <- cor(gdp_corr, use = "complete.obs")
+
+kable(gdp_corr_matrix, digits = 2, caption = "Correlation Matrix for GDP per capita, GHG, CO2 emissions and GHG per capita Data")
+
+
+#Correlation heatmap
+
+correlation_data1 <- melt(gdp_corr_matrix)
+
+ggplot(data = correlation_data1, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "red", high = "green", mid = "yellow", 
+                       midpoint = 0, limit = c(-1, 1), space = "Lab", 
+                       name = "Correlation") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1),
+        axis.text.y = element_text(size = 12)) +
+  labs(title = "Correlation Heatmap for GDP per capita, Annual GHG and CO2 Emissions", x = "", y = "")
+```
+
+#### regression analysis for gdp, ghg, c02
+
+```{r}
+
+#regression analysis for gdp, ghg, c02 to show how GHG and Annual CO2 impacts GDP per capita in NZ
+
+colnames(gdp1) 
+
+gdp_co_ghg_reg <- lm(GDP_per_capita ~ Annual_GHG + 
+                        Annual_CO2 + GHG_per_capita, data = gdp1)
+summary(gdp_co_ghg_reg)
+
+kable(summary(gdp_co_ghg_reg)$coefficients, caption = "Regression Coefficients")
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared <- summary(gdp_co_ghg_reg)$adj.r.squared
+multiple_r <- summary(gdp_co_ghg_reg)$r.squared
+
+cat("Adjusted R-squared:", adjusted_r_squared, "\n")
+cat("Multiple R:", multiple_r, "\n")
+
+
+```
+
+```{r}
+#plotting regression 
+
+gdp1$predicted_GDP_per_capita <- predict(gdp_co_ghg_reg, newdata = gdp1)
+
+# Plot the actual values against the predicted values
+ggplot(gdp1, aes(x = `GDP_per_capita`, y = predicted_GDP_per_capita)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = "red") +
+  labs(title = "Actual vs. Predicted GDP per capita",
+       x = "Actual GDP per capita",
+       y = "Predicted GDP per capita")
+```
+
+#### Exploring GDP and Sector wise GHG in NZ to see which sector significantly impacts the GDP
+
+```{r}
+
+#merging the GDP and Sector wise GHG emission data
+
+gdp_sec_ghg <- left_join(gdp_pc, ghg_sector, by = "Year") 
+gdp_sec_ghg
+
+colnames(ann_ghg) <- c("Year", "Annual_GHG")
+
+gdp_sec_ghg <- left_join(ann_ghg, gdp_sec_ghg, by = "Year")
+gdp_sec_ghg
+
+gdp_sec_ghg$Country <- NULL  #removed country column as it is not needed
+
+```
+
+```{r}
+#rearranging columns in gdp_sec_ghg
+
+gdp_sec_ghg <- gdp_sec_ghg %>%
+  select(Year, `GDP per capita`, everything())
+ 
+```
+
+```{r}
+
+#checking if there are any missing values 
+
+sum(is.na(gdp_sec_ghg))
+
+```
+
+#### correlation analysis between GDP per capita, Annual GHG emissions and GHG emissions from various sectors in NZ
+
+```{r}
+
+#handling missing values
+
+colnames(gdp_sec_ghg)
+gdp_sec_ghg <- clean_names(gdp_sec_ghg)
+
+gdp_sec_ghg <- gdp_sec_ghg[1:31, ] #dropped year 2021 and 2022 as no imputation method like mice and amelia worked due to high colinearity between columns
+```
+
+```{r}
+#descriptive statistics
+
+
+summary_gdp_sec_ghg <- data.frame(
+  Variable = colnames(gdp_sec_ghg)[-1],  # Exclude 'Year'
+  N = nrow(gdp_sec_ghg),
+  Mean = sapply(gdp_sec_ghg[-1], mean, na.rm = TRUE),
+  Median = sapply(gdp_sec_ghg[-1], median, na.rm = TRUE),
+  SD = sapply(gdp_sec_ghg[-1], sd, na.rm = TRUE),
+  Min = sapply(gdp_sec_ghg[-1], min, na.rm = TRUE),
+  Max = sapply(gdp_sec_ghg[-1], max, na.rm = TRUE)
+)
+print(summary_gdp_sec_ghg)
+```
+
+```{r}
+
+#### Correlation analysis #### 
+
+ gdp_sec_ghg_corr <- gdp_sec_ghg %>%
+  select(gdp_per_capita, annual_ghg, greenhouse_gas_emissions_from_agriculture, greenhouse_gas_emissions_from_land_use_change_and_forestry, greenhouse_gas_emissions_from_waste, greenhouse_gas_emissions_from_buildings, greenhouse_gas_emissions_from_industry, greenhouse_gas_emissions_from_manufacturing_and_construction, greenhouse_gas_emissions_from_transport, greenhouse_gas_emissions_from_electricity_and_heat, fugitive_emissions_of_greenhouse_gases_from_energy_production, greenhouse_gas_emissions_from_other_fuel_combustion, greenhouse_gas_emissions_from_bunker_fuels)
+
+gdp_sec_ghg_corr_matrix <- cor(gdp_sec_ghg_corr, use = "complete.obs")
+
+kable(gdp_sec_ghg_corr_matrix, digits = 2, caption = "Correlation Matrix for GDP, Annnual GHG, and GHG emissions from multiple sectors in NZ")
+
+```
+
+Correlation heatmap
+
+```{r}
+
+correlation_gdp_ghg_sec <- melt(gdp_sec_ghg_corr_matrix)
+
+ggplot(data = correlation_gdp_ghg_sec, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "red", high = "green", mid = "yellow", 
+                       midpoint = 0, limit = c(-1, 1), space = "Lab",
+                       name = "Correlation") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, size = 6, hjust = 1),
+        axis.text.y = element_text(size = 6)) +
+  labs(title = "Correlation Heatmap for GDP, Annual GHG and Sectorwisew GHG Emissions Data", x = "", y = "")
+
+```
+
+Regression analysis for GDP, Annual GHG and Sectorwise emissions in NZ
+
+```{r}
+
+#Regression analysis for GDP, Annual GHG and Sectorwise emissions in NZ 
+
+colnames(gdp_sec_ghg)
+
+gdp_ghg_sec_reg <- lm(gdp_per_capita ~ annual_ghg +
+  greenhouse_gas_emissions_from_agriculture +
+  greenhouse_gas_emissions_from_land_use_change_and_forestry +
+  greenhouse_gas_emissions_from_waste +
+  greenhouse_gas_emissions_from_buildings +
+  greenhouse_gas_emissions_from_industry +
+  greenhouse_gas_emissions_from_manufacturing_and_construction +
+  greenhouse_gas_emissions_from_transport +
+  greenhouse_gas_emissions_from_electricity_and_heat +
+  fugitive_emissions_of_greenhouse_gases_from_energy_production +
+  greenhouse_gas_emissions_from_other_fuel_combustion +
+  greenhouse_gas_emissions_from_bunker_fuels,
+  data = gdp_sec_ghg)
+
+summary(gdp_ghg_sec_reg)
+
+kable(summary(gdp_ghg_sec_reg)$coefficients, caption = "GDP, Annual GHG and Sectorwise GHG Regression Coefficients")
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared <- summary(gdp_ghg_sec_reg)$adj.r.squared
+multiple_r <- summary(gdp_ghg_sec_reg)$r.squared
+f_statistic <- summary(gdp_ghg_sec_reg)$fstatistic[1]
+df1 <- summary(gdp_ghg_sec_reg)$fstatistic[2]
+df2 <- summary(gdp_ghg_sec_reg)$fstatistic[3]
+f_p_value <- pf(f_statistic, df1, df2, lower.tail = FALSE)
+
+cat("Adjusted R-squared:", adjusted_r_squared, "\n")
+cat("Multiple R:", multiple_r, "\n")
+cat("F-statistic:", f_statistic, "\n")
+cat("F-statistic p-value:", f_p_value, "\n")
+
+
+
+```
+
+```{r}
+#Regression plot for Actual vs predicted GDP per capita 
+
+gdp_sec_ghg$predicted_gdp_per_capita <- predict(gdp_ghg_sec_reg, newdata = gdp_sec_ghg)
+
+# Plotting the actual values against the predicted values
+ggplot(gdp_sec_ghg, aes(x = gdp_per_capita, y = predicted_gdp_per_capita)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = "blue") +
+  labs(title = "Actual vs. Predicted GDP per capita",
+       x = "Actual GDP per capita",
+       y = "Predicted GDP per capita")
+```
+
+#### Comparing GDP per capita, Annual CO2 emissions and sector
+
+```{r}
+
+#preparing the data 
+
+#joining the datasets and rearranging the columns
+
+gdp_sec_co2 <- left_join(gdp_pc, co2_sector, by = "Year") 
+gdp_sec_co2
+
+gdp_sec_co2 <- left_join(ann_co2, gdp_sec_co2, by = "Year")
+gdp_sec_co2 <- clean_names(gdp_sec_co2)
+
+```
+
+```{r}
+#renaming columns for convention
+
+colnames(gdp_sec_co2) <- c("year", "annual_co2", "gdp_per_capita", "industry", "cement", "flaring", "gas", "oil", "coal")
+
+gdp_sec_co2 <- gdp_sec_co2 %>%
+  select(year, gdp_per_capita, everything())
+```
+
+```{r}
+
+#checking if there are any missing values 
+
+sum(is.na(gdp_sec_co2))
+
+```
+
+```{r}
+#descriptive statistics
+
+summary_gdp_sec_co2 <- data.frame(
+  Variable = colnames(gdp_sec_co2)[-1],  # Exclude 'Year'
+  N = nrow(gdp_sec_co2),
+  Mean = sapply(gdp_sec_co2[-1], mean, na.rm = TRUE),
+  Median = sapply(gdp_sec_co2[-1], median, na.rm = TRUE),
+  SD = sapply(gdp_sec_co2[-1], sd, na.rm = TRUE),
+  Min = sapply(gdp_sec_co2[-1], min, na.rm = TRUE),
+  Max = sapply(gdp_sec_co2[-1], max, na.rm = TRUE)
+)
+print(summary_gdp_sec_co2)
+```
+
+#### Correlation Analysis for GDP per capita, Annual CO2 emissions and cumulative CO2 emissions from varios sources in NZ
+
+```{r}
+
+colnames(gdp_sec_co2)
+
+gdp_sec_co2 <- clean_names(gdp_sec_co2)
+
+ gdp_sec_co2_corr <- gdp_sec_co2 %>%
+  select(gdp_per_capita, annual_co2, industry, cement, flaring, gas, oil, coal)
+
+gdp_sec_co2_corr_matrix <- cor(gdp_sec_co2_corr, use = "complete.obs")
+print(gdp_sec_co2_corr_matrix)
+
+kable(gdp_sec_co2_corr_matrix, digits = 2, caption = "Correlation Matrix for GDP, Annnual CO2, and Cumulative CO2 emissions from multiple sectors in NZ")
+
+```
+
+Correlation Analysis
+
+```{r}
+
+correlation_gdp_ann_sec <- melt(gdp_sec_co2_corr_matrix)
+
+ggplot(data = correlation_gdp_ann_sec, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "red", high = "green", mid = "yellow", 
+                       midpoint = 0, limit = c(-1, 1), space = "Lab",
+                       name = "Correlation") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, size = 6, hjust = 1),
+        axis.text.y = element_text(size = 6)) +
+  labs(title = "Correlation Heatmap for GDP, Annual CO2 and Cumulative CO2 Emissions from various sources", x = "", y = "")
+
+
+```
+
+#### Regression Analysis
+
+```{r}
+
+colnames(gdp_sec_co2)
+
+gdp_ann_sec_reg <- lm(gdp_per_capita ~ annual_co2 +
+  industry + cement + flaring + gas + oil + coal,
+  data = gdp_sec_co2)
+
+summary(gdp_ann_sec_reg)
+
+kable(summary(gdp_ann_sec_reg)$coefficients, caption = "GDP, Annual CO2 and Cumulative CO2 Emissions from various sources")
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared <- summary(gdp_ann_sec_reg)$adj.r.squared
+multiple_r <- summary(gdp_ann_sec_reg)$r.squared
+
+cat("Adjusted R-squared:", adjusted_r_squared, "\n")
+cat("Multiple R:", multiple_r, "\n")
+
+```
+
+```{r}
+
+gdp_sec_co2$predicted_gdp_per_capita <- predict(gdp_ann_sec_reg, newdata = gdp_sec_co2)
+
+# Plotting the actual values against the predicted values
+ggplot(gdp_sec_co2, aes(x = gdp_per_capita, y = predicted_gdp_per_capita)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = "blue") +
+  labs(title = "Actual vs. Predicted GDP per capita",
+       x = "Actual GDP per capita",
+       y = "Predicted GDP per capita")
+```
+
+Forecasting variables for the next 5 years i.e. till 2027
+
+#### Data mining for GDP per capita, Annual CO2 and Cumulative CO2 from different sources in NZ
+
+```{r}
+
+gdp_co2_dm <- read_csv("GDP-CO2-Sec.csv", show_col_types = FALSE)
+
+pca_result <- prcomp(gdp_co2_dm, center = TRUE, scale. = TRUE)
+
+summary(pca_result)
+
+biplot(pca_result, main = "PCA of CO2 emissions and GDP Data")
+
+
+```
+
+#### autocorrelation and partial autocorrelation analysis
+
+```{r}
+
+#GHG per capita
+
+ghg_pc_ac <- read.csv("GHG_per_capita.csv")
+
+ghg_pc_ac <- ghg_pc_ac %>%
+  filter(Entity == "New Zealand")
+```
+
+```{r}
+
+ghg_per_capita_ts <- ts(ghg_pc_ac$Per.capita.greenhouse.gas.emissions.in.CO..equivalents, start=min(ghg_pc_ac$Year), end=max(ghg_pc_ac$Year), frequency=1)
+
+autoplot(ghg_per_capita_ts) +
+  ggtitle("GHG per Capita Emissions Over Time") +
+  xlab("Year") +
+  ylab("GHG per Capita")
+
+
+#autocorrelation - AC
+
+ggAcf(ghg_per_capita_ts) +
+  ggtitle("Autocorrelation of GHG per Capita Emissions")
+
+#partial autocorrelation - PAC
+ggPacf(ghg_per_capita_ts) +
+  ggtitle("Partial Autocorrelation of GHG per Capita Emissions")
+
+
+```
+
+```{r}
+#GDP per capita 
+
+gdp_pc_ac <- gdp_pc
+
+```
+
+```{r}
+
+gdp_per_capita_ts <- ts(gdp_pc_ac$`GDP per capita`, start=min(gdp_pc_ac$Year), end=max(gdp_pc_ac$Year), frequency=1)
+
+autoplot(gdp_per_capita_ts) +
+  ggtitle("GDP per Capita Over Time") +
+  xlab("Year") +
+  ylab("GDP per Capita")
+
+
+#autocorrelation - AC
+
+ggAcf(gdp_per_capita_ts) +
+  ggtitle("Autocorrelation of GDP per Capita")
+
+#partial autocorrelation - PAC
+ggPacf(gdp_per_capita_ts) +
+  ggtitle("Partial Autocorrelation of GDP per Capita")
+
+
+
+```
+
+```{r}
+
+#Annual GHG Emissions 
+
+ghg_ac <- read_csv("Ann-GHG-NZ.csv", show_col_types = FALSE)
+
+```
+
+```{r}
+
+ghg_ts <- ts(ghg_ac$`Annual greenhouse gas emissions in CO2 equivalents`, start=min(ghg_ac$Year), end=max(ghg_ac$Year), frequency=1)
+
+autoplot(ghg_ts) +
+  ggtitle("Annual GHG Over Time") +
+  xlab("Year") +
+  ylab("GHG")
+
+
+#autocorrelation - AC
+ggAcf(ghg_ts) +
+  ggtitle("Autocorrelation of Annual GHG")
+
+#partial autocorrelation - PAC
+ggPacf(ghg_ts) +
+  ggtitle("Partial Autocorrelation of Annual GHG")
+
+```
+
+```{r}
+#Annual CO2 
+
+co2_ac <- read_csv("Ann-CO2.csv", show_col_types = FALSE)
+
+```
+
+```{r}
+co2_ts <- ts(co2_ac$`Annual CO2 emissions including land-use change`, start=min(co2_ac$Year), end=max(co2_ac$Year), frequency=1)
+
+autoplot(co2_ts) +
+  ggtitle("Annual CO2 Over Time") +
+  xlab("Year") +
+  ylab("CO2")
+
+
+#autocorrelation - AC
+
+ggAcf(co2_ts) +
+  ggtitle("Autocorrelation of Annual CO2")
+
+#partial autocorrelation - PAC
+ggPacf(co2_ts) +
+  ggtitle("Partial Autocorrelation of Annual CO2")
+
+
+```
+
+#### Predicting values for next 5 years using ARIMA
+
+```{r}
+#GDP per capita 
+
+gdp_arima <- auto.arima(gdp_per_capita_ts)
+summary(gdp_arima)
+
+# Forecast for the next 5 years
+gdp_forecast <- forecast(gdp_arima, h = 5)
+plot(gdp_forecast)
+
+
+```
+
+```{r}
+#Annual GHG
+
+
+ghg_arima <- auto.arima(ghg_ts)
+summary(ghg_arima)
+
+# Forecast for the next 5 years
+ghg_forecast <- forecast(ghg_arima, h = 5)
+plot(ghg_forecast)
+
+
+```
+
+```{r}
+#annual CO2
+
+co2_arima <- auto.arima(co2_ts)
+summary(co2_arima)
+
+# Forecast for the next 5 years
+co2_forecast <- forecast(co2_arima, h = 5)
+plot(co2_forecast)
+
+
+```
+
+```{r}
+
+#GHG Per capita
+
+ghg_per_capita_arima <- auto.arima(ghg_per_capita_ts)
+summary(ghg_per_capita_arima)
+
+# Forecast for the next 5 years
+ghg_per_capita_forecast <- forecast(ghg_per_capita_arima, h = 5)
+plot(ghg_per_capita_forecast)
+
+
+
+```
+
+#### Evaluating model performance
+
+```{r}
+# Check residuals for GDP per Capita model
+checkresiduals(gdp_arima)
+
+# Repeat for other models
+checkresiduals(ghg_arima)
+checkresiduals(co2_arima)
+checkresiduals(ghg_per_capita_arima)
+
+```
+
+```{r}
+# Compare AIC values
+AIC(gdp_arima, ghg_arima, co2_arima, ghg_per_capita_arima)
+
+```
+
+```{r}
+
+thank_you_text <- data.frame(
+  x = 1,
+  y = 1,
+  label = "Thank You!"
+)
+
+ggplot(thank_you_text, aes(x, y, label = label)) +
+  geom_text(size = 20, color = "blue", fontface = "bold", family = "serif") +
+  xlim(0.5, 1.5) +
+  ylim(0.5, 1.5) +
+  theme_void() +
+  theme(
+    plot.margin = margin(1, 1, 1, 1, "cm"),
+    plot.background = element_rect(fill = "lightgray")
+  )
+
+
+```
