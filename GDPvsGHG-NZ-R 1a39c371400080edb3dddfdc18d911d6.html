@@ -1,0 +1,1481 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>GDPvsGHG-NZ-R</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1a39c371-4000-80ed-b3dd-dfdc18d911d6" class="page sans"><header><h1 class="page-title">GDPvsGHG-NZ-R</h1><p class="page-description"></p></header><div class="page-body"><h2 id="1a39c371-4000-80a8-be84-ee8f5c12504a" class="">Data Preparation</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8077-8111-c7e42bcad373" class="code"><code class="language-R">#### Installing required libraries and preparing the environment
+
+```{r}
+
+options(repos = &quot;https://cran.rstudio.com/&quot;)
+install.packages(&quot;tidyverse&quot;)
+install.packages(&quot;dyplr&quot;)
+install.packages(&quot;ggplot2&quot;)
+install.packages(&quot;mice&quot;)
+install.packages(&quot;knitr&quot;)
+install.packages(&quot;corrplot&quot;)
+install.packages(&quot;reshape2&quot;)
+install.packages(&quot;janitor&quot;)
+install.packages(&quot;imputeTS&quot;)
+install.packages(&quot;skimr&quot;)
+library(skimr)
+library(imputeTS)
+library(janitor)
+library(tidyverse)
+library(ggplot2)
+library(mice)
+library(knitr)
+library(corrplot)
+library(reshape2)
+library(forecast)
+library(tseries)
+```</code></pre><p id="1a39c371-4000-8092-91dc-c5f9fabd2145" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8075-8a73-cf6d38f71e0e" class="code"><code class="language-R">#set working directory
+setwd(&quot;~/Documents/Data Intelligence&quot;)</code></pre><p id="1a39c371-4000-807a-904c-c95228273c4a" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8040-b9e9-ed1ab6bd86ee" class="code"><code class="language-R">#### Importing the datasets
+
+```{r}
+
+gdp &lt;- read_csv(&quot;Total-GDP-NZ.csv&quot;, show_col_types = FALSE)
+total_co2 &lt;- read_csv(&quot;Total-CO2.csv&quot;, show_col_types = FALSE)
+ann_co2 &lt;- read_csv(&quot;Ann-CO2.csv&quot;, show_col_types = FALSE)
+ann_ghg &lt;- read_csv(&quot;Ann-GHG-NZ.csv&quot;, show_col_types = FALSE)
+co2_sector &lt;- read_csv(&quot;CO2-sector.csv&quot;, show_col_types = FALSE)
+gdp_pc &lt;- read_csv(&quot;GDP-PC-NZ.csv&quot;, show_col_types = FALSE)
+ghg_gas &lt;- read_csv(&quot;GHG-Gas.csv&quot;, show_col_types = FALSE)
+ghg_sector &lt;- read_csv(&quot;GHG-sector.csv&quot;, show_col_types = FALSE)
+ghg_pc &lt;- read_csv(&quot;GHG_per_capita.csv&quot;, show_col_types = FALSE)
+
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80f5-b8c3-d91d57cdc07b" class="code"><code class="language-R">#### Descriptive Statistics of all the datasets
+
+```{r}
+#Annual GDP
+
+head(gdp)
+tail(gdp)
+summary(gdp)
+
+#Cumulative annual CO2
+
+head(total_co2)
+tail(total_co2)
+summary(total_co2)
+
+#Annual CO2
+
+head(ann_co2)
+tail(ann_co2)
+summary(ann_co2)
+
+#Annual GHG
+
+head(ann_ghg)
+tail(ann_ghg)
+summary(ann_ghg)
+
+#Cumulative CO2 emissions from multiple sources NZ
+
+head(co2_sector)
+tail(co2_sector)
+summary(co2_sector)
+
+#GDP per capital NZ
+
+head(gdp_pc)
+tail(gdp_pc)
+summary(gdp_pc$`GDP per capita`)
+
+#GHG emissions from various gases 
+
+head(ghg_gas)
+tail(ghg_gas)
+summary(ghg_gas)
+
+#GHG emissions from various sectors in NZ 
+head(ghg_sector)
+tail(ghg_sector)
+summary(ghg_sector)</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8060-ac09-fd31b2304fe0" class="code"><code class="language-R">#filtering countries by &#x27;New Zealand&#x27;
+
+```{r}
+#GHG per capita
+
+ghg_pc &lt;- ghg_pc %&gt;% 
+  filter(Entity == &quot;New Zealand&quot;)
+  
+head(ghg_pc)
+tail(ghg_pc)
+summary(ghg_pc$`Per-capita greenhouse gas emissions in CO₂ equivalents`)
+
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80cd-af76-c2a96b9084c1" class="code"><code class="language-R">#### Data Preparation for Analysis before joining
+
+#Since most of the data is available from 1990 to 2022, I filtered all the datasets to show from 1990 to recent.
+
+```{r}
+
+ann_co2 &lt;- ann_co2 %&gt;%
+  filter(ann_co2$Year &gt;= 1990)
+
+```
+
+```{r}
+ann_ghg &lt;- ann_ghg %&gt;% 
+  filter(Year &gt;= 1990)
+```
+
+```{r}
+ghg_gas &lt;- ghg_gas %&gt;%
+  filter(Year &gt;= 1990)
+```
+
+```{r}
+total_co2 &lt;- total_co2 %&gt;% 
+  filter(Year &gt;= 1990)
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-807e-893a-c3226c76c1c6" class="code"><code class="language-R">#### Checking for any missing values in all the datasets
+
+```{r}
+sum(is.na(ann_co2))
+sum(is.na(ann_ghg))
+sum(is.na(co2_sector))
+sum(is.na(gdp))
+sum(is.na(gdp_pc))
+sum(is.na(ghg_gas))
+sum(is.na(ghg_sector))
+sum(is.na(total_co2))
+```</code></pre><p id="1a39c371-4000-805e-b76d-dcd5bc27f474" class="">
+</p><h2 id="1a39c371-4000-8033-a49c-f49c1e1d0996" class=""><em>Analysis 1 - Descriptive statistics, correlation, and regression analysis of Annual GHG, Methane, Nitrous Oxide, and CO2 emissions in NZ.</em></h2><p id="1a39c371-4000-80d4-a84b-e834209c8df1" class="">Greenhouse gases are majorly driven by human activities (Ritchie et al., 2023). Carbon dioxide, methane and nitrous oxide are produced by burning fossil fuels and producing goods like steel, cement, plastic and food. New Zealand is one of the highest producers of GHG per capita (Kliejunas et al., 2023).</p><p id="1a39c371-4000-8041-bd55-e582f11e67f0" class="">The first objective is to explore which gas amongst CO2, methane and nitrous oxide contributes significantly to the overall GHG in New Zealand.</p><p id="1a39c371-4000-80df-b881-f38788d53a3a" class="">
+</p><p id="1a39c371-4000-805d-bd04-fce4b9a19048" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80ec-a9d0-c0b9c76101ba" class="code"><code class="language-R">#### Merging the Annual GHG and Sector Wise GHG dataset for predictive analytics techniques like correlation analysis and regression analysis
+
+```{r}
+
+#Preparing the data
+ghg1 &lt;- left_join(ghg_gas, ann_ghg, by = &quot;Year&quot;) #combining nitroux oxide, methane and CO2 emissions to annula ghg datdset
+ghg1 &lt;- clean_names(ghg1)
+
+ghg1$Annual_GHG &lt;- ghg1$annual_greenhouse_gas_emissions_in_co2_equivalents
+ghg1$annual_greenhouse_gas_emissions_in_co2_equivalents &lt;- NULL
+
+ghg1 &lt;- ghg1 %&gt;%
+  select(year, Annual_GHG, everything()) #rearranging columns by year, Annual GHG and then the other gases
+
+colnames(ghg1) &lt;- c(&quot;Year&quot;, &quot;Annual_GHG&quot;, &quot;Nitrous_Oxide&quot;, &quot;Methane&quot;, &quot;CO2&quot;)
+
+#custom summary table
+summary_table &lt;- data.frame(
+  Variable = colnames(ghg1)[-1],  # Exclude &#x27;Year&#x27;
+  N = nrow(ghg1),
+  Mean = sapply(ghg1[-1], mean, na.rm = TRUE),
+  Median = sapply(ghg1[-1], median, na.rm = TRUE),
+  SD = sapply(ghg1[-1], sd, na.rm = TRUE),
+  Min = sapply(ghg1[-1], min, na.rm = TRUE),
+  Max = sapply(ghg1[-1], max, na.rm = TRUE)
+)
+
+# Print the summary
+print(summary_table)
+</code></pre><p id="1a39c371-4000-8050-b7dc-d490871c736e" class="">
+</p><figure id="1a39c371-4000-803b-af92-c7dd5a19653c" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image.png"><img style="width:709.9644775390625px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image.png"/></a></figure><p id="1a39c371-4000-80a5-8c6b-fa5f77407c1e" class=""><em>Summary of Annual GHG, nitrous oxide, methane and CO2 emissions in NZ</em></p><p id="1a39c371-4000-80c1-b511-c0c9f3ab7870" class="">
+</p><blockquote id="1a39c371-4000-807f-afa5-d41aeed34844" class=""><strong>Key findings:</strong></blockquote><ul id="1a39c371-4000-8066-9e17-c6267dfaae4b" class="bulleted-list"><li style="list-style-type:disc">The dataset contains no missing values.</li></ul><ul id="1a39c371-4000-809b-bcc5-fe7ba105772a" class="bulleted-list"><li style="list-style-type:disc">The average GHG emissions stood at 65.8 million CO2 equivalent from 1990 to 2022.</li></ul><ul id="1a39c371-4000-803a-be28-e16c10b40900" class="bulleted-list"><li style="list-style-type:disc">The mean and median are close, suggesting a symmetrical distribution.</li></ul><ul id="1a39c371-4000-8018-ad0a-f6d298523b9d" class="bulleted-list"><li style="list-style-type:disc">The Standard Deviation of Annual GHG emissions is 8199717.1, slightly higher than the mean 65756343, suggesting the data points are more dispersed.</li></ul><p id="1a39c371-4000-803c-b6f4-ef7dd9cc301e" class="">Further, a correlation analysis was conducted to see which gases highly correlate with Annual GHG emissions in New Zealand.</p><p id="1a39c371-4000-80fb-a781-f556cd69bc76" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8013-96c4-e93699f41cbe" class="code"><code class="language-R">#### Correlation Analysis to check which gas highly correlates with Annual GHG emissions in NZ
+
+```{r}
+colnames(ghg1) #checking column names to make sure all the columns are aligned properly
+
+#correlation matrix to check which gases have high correlation with Annual GHG emissions
+
+ghg_corr &lt;- ghg1 %&gt;%
+  select(Annual_GHG, Nitrous_Oxide, 
+         Methane, CO2)
+
+correlation_matrix &lt;- cor(ghg_corr, use = &quot;complete.obs&quot;)
+
+kable(correlation_matrix, digits = 2, caption = &quot;Correlation Matrix for GHG Emissions Data&quot;) #using kable to represent data in a proper tabular format
+
+```</code></pre><p id="1a39c371-4000-80e7-869c-f9b327ce6eb9" class="">
+</p><figure id="1a39c371-4000-800b-84a5-faaefc3d90e2" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%201.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%201.png"/></a></figure><p id="1a39c371-4000-8035-95b0-d0e408a54fc6" class=""><em>Correlation matrix of Annual GHG, Nitrous Oxide, Methane and CO2</em></p><p id="1a39c371-4000-80a9-bde1-f302b9940f18" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80c7-ae24-f849609bb16d" class="code"><code class="language-R">#correlation heatmap of Annual GHG emissions and other gases
+
+correlation_data &lt;- melt(correlation_matrix)
+
+ggplot(data = correlation_data, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = &quot;white&quot;) +
+  scale_fill_gradient2(low = &quot;red&quot;, high = &quot;green&quot;, mid = &quot;yellow&quot;, 
+                       midpoint = 0, limit = c(-1, 1), space = &quot;Lab&quot;, 
+                       name = &quot;Correlation&quot;) +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1),
+        axis.text.y = element_text(size = 12)) +
+  labs(title = &quot;Correlation Heatmap for GHG Emissions Data&quot;, x = &quot;&quot;, y = &quot;&quot;)</code></pre><p id="1a39c371-4000-808b-883d-fbdccbd586ed" class="">
+</p><figure id="1a39c371-4000-8039-9644-c2447957b93f" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%202.png"><img style="width:709.9928588867188px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%202.png"/></a></figure><p id="1a39c371-4000-80d9-811e-f26cf3123696" class=""><em>Correlation heatmap of Annual GHG, Nitrous Oxide, Methane and CO2</em></p><p id="1a39c371-4000-8001-aee5-e7e9df5acd39" class="">
+</p><blockquote id="1a39c371-4000-8036-9323-fc04749f4c71" class=""><strong>Key findings</strong></blockquote><ul id="1a39c371-4000-8001-b590-d1ae9a65a666" class="bulleted-list"><li style="list-style-type:disc">Annual GHG and CO2 emissions have a strong positive correlation of 0.99, suggesting that if one increases, the other increases and vice versa.</li></ul><ul id="1a39c371-4000-80d3-b123-db9510fc07c8" class="bulleted-list"><li style="list-style-type:disc">Annual GHG emissions have a negative correlation (-0.51) with methane emissions, suggesting the relationship between them is not strong.</li></ul><p id="1a39c371-4000-8069-a20a-ec02b7adf6ee" class="">
+</p><p id="1a39c371-4000-8096-9829-fd5d639757e8" class="">Next, multiple regression analysis explores how other gases contribute to overall GHG emissions in NZ.</p><p id="1a39c371-4000-8076-87c6-f838cdce866d" class="">
+</p><p id="1a39c371-4000-805c-a83b-fcfe97673c17" class="">Here, Annual GHG is the dependent variable, and the rest of the gases are independent variables.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-807f-8240-e640c93e01a0" class="code"><code class="language-R">```{r}
+#regression analysis to check how other gases influence Annual GHG in NZ
+
+colnames(ghg1)
+ghg_reg &lt;- lm(Annual_GHG ~  + Annual_GHG + Nitrous_Oxide + Methane + CO2, data = ghg1)
+summary(ghg_reg)
+
+kable(summary(ghg_reg)$coefficients, caption = &quot;Regression Coefficients&quot;)
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared &lt;- summary(ghg_reg)$adj.r.squared
+multiple_r &lt;- summary(ghg_reg)$r.squared
+f_statistic &lt;- summary(ghg_reg)$fstatistic[1]
+
+cat(&quot;Adjusted R-squared:&quot;, adjusted_r_squared, &quot;\n&quot;)
+cat(&quot;Multiple R:&quot;, multiple_r, &quot;\n&quot;)
+cat(&quot;F-statistic:&quot;, f_statistic, &quot;\n&quot;)
+
+
+#plotting regression 
+
+ghg1$predicted_Annual_GHG &lt;- predict(ghg_reg, newdata = ghg1)
+
+ggplot(ghg1, aes(x = Annual_GHG, y = predicted_Annual_GHG)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = &quot;red&quot;) +
+  labs(title = &quot;Actual vs. Predicted Annual GHG&quot;,
+       x = &quot;Actual Annual GHG&quot;,
+       y = &quot;Predicted Annual GHG&quot;)
+```</code></pre><figure id="1a39c371-4000-802e-a01b-f5d956ff005f" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%203.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%203.png"/></a></figure><p id="1a39c371-4000-8037-bb5a-fcf4ba677146" class=""><em>Regression Analysis of Annual GHG, Nitrous Oxide, Methane and CO2</em></p><p id="1a39c371-4000-806d-a14b-f02298cd70b5" class="">
+</p><blockquote id="1a39c371-4000-80d4-8e19-e35155639e99" class=""><strong>Key findings:</strong></blockquote><ul id="1a39c371-4000-80a5-9515-f250e0044a9b" class="bulleted-list"><li style="list-style-type:disc">The adjusted R square value is 1, suggesting that 100% variation in Annual GHG emissions can be explained by other variables.</li></ul><ul id="1a39c371-4000-80c7-a620-e678cd53954b" class="bulleted-list"><li style="list-style-type:disc">The P-value of all the independent variables is <strong>0.000</strong>, less than 5%, suggesting the other gases are statistically significant to Annual GHG emissions.</li></ul><ul id="1a39c371-4000-80a5-bc54-c845202ad566" class="bulleted-list"><li style="list-style-type:disc">The p-value of the f-statistic is less than 5%, suggesting the model is the best fit.</li></ul><ul id="1a39c371-4000-8088-b697-c7d2f48d929c" class="bulleted-list"><li style="list-style-type:disc">Each unit increase in other independent variables increases Annual GHG by <strong>1.000</strong></li></ul><p id="1a39c371-4000-8068-8499-c39d9021e4ce" class="">
+</p><h3 id="1a39c371-4000-80bf-9ab5-e7ee6a12318d" class=""><strong>Analysis 1: Conclusion and limitations</strong></h3><ul id="1a39c371-4000-8089-b1c4-d9b84363aae0" class="bulleted-list"><li style="list-style-type:disc">Amongst all three gases, CO2 emissions are highly correlate with annual GHG in New Zealand.</li></ul><ul id="1a39c371-4000-804c-b7cf-f2ab73b2397b" class="bulleted-list"><li style="list-style-type:disc">CO2, methane, and nitrous oxide emissions are statistically significant in annual GHG emissions.</li></ul><p id="1a39c371-4000-80ea-9345-f9b521cd9be6" class="">CO2 gases majorly contribute to GHG emissions in NZ. Government can define policies around CO2 emission reduction to reduce the overall GHG emissions. While CO2, Methane, and Nitrous Oxide emissions are statistically significant to Annual GHG in New Zealand, it does not consider other possible gases that may contribute to GHG emissions in New Zealand.</p><p id="1a39c371-4000-8013-9140-d4d88d52e8df" class="">
+</p><p id="1a39c371-4000-8013-904a-f4ba6aeb4277" class="">
+</p><h2 id="1a39c371-4000-8068-bf26-da996bb663b5" class=""><em>Analysis 2 - Descriptive statistics, correlation, and regression analysis of GDP per capita, Annual GHG, Annual CO2 and GHG per capita</em></h2><p id="1a39c371-4000-804a-8d74-cf41c5891db6" class="">
+</p><p id="1a39c371-4000-80c5-b734-cbedf2fea84d" class="">    Climate change negatively impacts the economy (Economics Observatory, 2024). Moreover, for New Zealand businesses, GHG emissions and climate change remain top problems (EECA, 2022). GHG and CO2 emissions majorly drive Climate Change (United Nations, n.d.). Therefore, it is worth analyzing if they impact GDP per capita in NZ.</p><p id="1a39c371-4000-800a-ac0b-c6abb3b1c5f9" class="">This analysis compares the Annual GHG, CO2, GHG per capita and GDP per capita datasets.</p><p id="1a39c371-4000-80e1-8c62-e64237f62dfe" class="">
+</p><p id="1a39c371-4000-8056-9ca5-d279587663f7" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-806b-aff3-c2e8c3637df5" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">#Analyzing GDP, Annual GHG, and Annual CO2 emissions to see which variable has a high correlation with GDP in New Zealand 
+
+#merging gdp, ghg per capita, annual ghg and annual CO2 datasets
+
+gdp1 &lt;- left_join(gdp_pc, ann_ghg, by = &quot;Year&quot;)
+gdp1
+
+colnames(gdp1)
+gdp1 &lt;- gdp1 %&gt;%
+  select(Year, `GDP per capita`, everything())
+
+gdp1 &lt;- left_join(gdp1, ann_co2, by = &quot;Year&quot;)
+gdp1
+
+#filtering ghg per capita data from the year 1990 to 2022
+ghg_pc &lt;- ghg_pc %&gt;%
+  filter(Year &gt;= 1990)
+
+gdp1 &lt;- left_join(gdp1, ghg_pc, by = &quot;Year&quot;)
+gdp1$Entity &lt;- NULL
+gdp1$Code &lt;- NULL
+gdp1$predicted_GDP_per_capita &lt;- NULL
+
+
+colnames(gdp1) &lt;- c(&quot;Year&quot;, &quot;GDP_per_capita&quot;, &quot;Annual_GHG&quot;, &quot;Annual_CO2&quot;, &quot;GHG_per_capita&quot;)
+
+print(gdp1)</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80e5-b60d-f88a0cdcd1e4" class="code"><code class="language-R">```{r}
+#Descriptive statistics
+
+summary(gdp1)
+
+summary_gdp1 &lt;- data.frame(
+  Variable = colnames(gdp1)[-1],  # Exclude &#x27;Year&#x27;
+  N = nrow(gdp1),
+  Mean = sapply(gdp1[-1], mean, na.rm = TRUE),
+  Median = sapply(gdp1[-1], median, na.rm = TRUE),
+  SD = sapply(gdp1[-1], sd, na.rm = TRUE),
+  Min = sapply(gdp1[-1], min, na.rm = TRUE),
+  Max = sapply(gdp1[-1], max, na.rm = TRUE)
+)
+
+print(summary_gdp1)
+```</code></pre><figure id="1a39c371-4000-80cd-9957-d0e80fbceb5b" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%204.png"><img style="width:709.9715576171875px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%204.png"/></a></figure><p id="1a39c371-4000-802d-a773-c29835aea541" class=""><em>Descriptive summary</em></p><p id="1a39c371-4000-806a-b3d5-ddb3fec46c39" class="">
+</p><p id="1a39c371-4000-8026-9e55-dcd5822fc2ed" class="">A correlation analysis explores how GDP per capita relates to Annual GHG emissions, Annual CO2 emissions and GHG per capita emissions. </p><p id="1a39c371-4000-807e-8fe6-ce9b9d65aa8b" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80c9-bd9f-e397338fcf8e" class="code"><code class="language-R">#### Correlation Analysis of GDP per capita, Annual GHG and CO2 emissions
+
+```{r}
+#correlatoion analysis for GDP and Annual GHG Emissions in NZ 
+
+colnames(gdp1)
+gdp_corr &lt;- gdp1 %&gt;%
+  select(GDP_per_capita,Annual_GHG, Annual_CO2, GHG_per_capita)
+
+gdp_corr_matrix &lt;- cor(gdp_corr, use = &quot;complete.obs&quot;)
+
+kable(gdp_corr_matrix, digits = 2, caption = &quot;Correlation Matrix for GDP per capita, GHG, CO2 emissions and GHG per capita Data&quot;)
+
+
+#Correlation heatmap
+
+correlation_data1 &lt;- melt(gdp_corr_matrix)
+
+ggplot(data = correlation_data1, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = &quot;white&quot;) +
+  scale_fill_gradient2(low = &quot;red&quot;, high = &quot;green&quot;, mid = &quot;yellow&quot;, 
+                       midpoint = 0, limit = c(-1, 1), space = &quot;Lab&quot;, 
+                       name = &quot;Correlation&quot;) +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1),
+        axis.text.y = element_text(size = 12)) +
+  labs(title = &quot;Correlation Heatmap for GDP per capita, Annual GHG and CO2 Emissions&quot;, x = &quot;&quot;, y = &quot;&quot;)
+```</code></pre><figure id="1a39c371-4000-80a7-8aff-f33388147be2" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%205.png"><img style="width:709.9644775390625px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%205.png"/></a></figure><p id="1a39c371-4000-804d-93be-fe7fae3e3a3f" class=""><em>Correlation Analysis between GDP per capita, Annual GHG, CO2 emissions and GHG per capita</em></p><p id="1a39c371-4000-80ed-830b-e21b8206f5cb" class="">
+</p><figure id="1a39c371-4000-80b3-a55c-d46ed1841f4e" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%206.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%206.png"/></a></figure><p id="1a39c371-4000-804a-a485-f192d35b4add" class=""><em>Correlation Analysis between GDP per capita, Annual GHG, CO2 emissions and GHG per capita</em></p><p id="1a39c371-4000-8098-b0f2-c97917c1d3ca" class="">
+</p><blockquote id="1a39c371-4000-8056-b65f-d35a13224af6" class=""><strong>Key findings</strong></blockquote><ul id="1a39c371-4000-8095-aa25-f18cf6ff314f" class="bulleted-list"><li style="list-style-type:disc">GDP per capita (0.45) positively correlates with Annual CO2 emissions, suggesting one factor influences the other.</li></ul><ul id="1a39c371-4000-8066-9c0e-e7fe46fb8bb0" class="bulleted-list"><li style="list-style-type:disc">GDP per capita has a strong negative correlation with GHG per capita (-0.79), suggesting an increase in GDP per capita tends to decrease GHG per capita.</li></ul><ul id="1a39c371-4000-80ce-bd15-ee1dc8e7fcfd" class="bulleted-list"><li style="list-style-type:disc">However, GDP per capita negatively correlates (-0.28) with Annual GHG emissions.</li></ul><p id="1a39c371-4000-80b9-a60c-dd5b8c41a13d" class="">Furthermore, a regression analysis is conducted to explore if Annual GHG and CO2 emissions impact GDP per capita in New Zealand.</p><p id="1a39c371-4000-8003-8060-d2dbf86fed96" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80ee-bbb4-e991b00c5358" class="code"><code class="language-R">#### regression analysis for gdp, ghg, c02
+
+```{r}
+
+#regression analysis for gdp, ghg, c02 to show how GHG and Annual CO2 impacts GDP per capita in NZ
+
+colnames(gdp1) 
+
+gdp_co_ghg_reg &lt;- lm(GDP_per_capita ~ Annual_GHG + 
+                        Annual_CO2 + GHG_per_capita, data = gdp1)
+summary(gdp_co_ghg_reg)
+
+kable(summary(gdp_co_ghg_reg)$coefficients, caption = &quot;Regression Coefficients&quot;)
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared &lt;- summary(gdp_co_ghg_reg)$adj.r.squared
+multiple_r &lt;- summary(gdp_co_ghg_reg)$r.squared
+
+cat(&quot;Adjusted R-squared:&quot;, adjusted_r_squared, &quot;\n&quot;)
+cat(&quot;Multiple R:&quot;, multiple_r, &quot;\n&quot;)
+
+
+```</code></pre><figure id="1a39c371-4000-8024-8154-d8404b699e32" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%207.png"><img style="width:709.9644775390625px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%207.png"/></a></figure><p id="1a39c371-4000-8021-bd50-f69b157fdc2f" class=""><em>Regression analysis of GDP per capita, Annual GHG and CO2 emissions - 1</em></p><p id="1a39c371-4000-80c2-ab37-dacb2a10bd6f" class="">
+</p><figure id="1a39c371-4000-808c-8fd7-d2c42ff034d8" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%208.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%208.png"/></a></figure><p id="1a39c371-4000-801a-bb78-e5feacacd823" class=""><em>Regression analysis of GDP per capita, Annual GHG and CO2 emissions - 2</em></p><p id="1a39c371-4000-80e3-ab7a-cf2139faeeab" class="">
+</p><blockquote id="1a39c371-4000-8015-9d76-f1e2e1c77ebc" class=""><strong>Key findings</strong></blockquote><ul id="1a39c371-4000-80a7-a1ae-e51c01759c3c" class="bulleted-list"><li style="list-style-type:disc">Adjusted R-square (0.9559) suggests that 95% of the variation in GDP per capita can be explained by Annual GHG, CO2, and GHG per capita emissions in NZ.</li></ul><ul id="1a39c371-4000-8005-80c7-dd4a2bf4cf73" class="bulleted-list"><li style="list-style-type:disc">F-statistic has a p-value of 2.2e-16, which is less than the significance level of 5%, suggesting the model is the best fit.</li></ul><ul id="1a39c371-4000-8055-88ec-fcb614f1101c" class="bulleted-list"><li style="list-style-type:disc">The Annual GHG and GHG per capita are statistically significant to GDP per capita at 5% significance level.</li></ul><ul id="1a39c371-4000-80e1-807e-ddc033d47c96" class="bulleted-list"><li style="list-style-type:disc">Each unit increase in Annual GHG reduces GDP by approximately 0.000597 units, suggesting that although the magnitude is small, an increase in GHG emissions potentially reduces GDP per capita.</li></ul><ul id="1a39c371-4000-8043-88c4-c848f91a1bce" class="bulleted-list"><li style="list-style-type:disc">The coefficient of GHG per capita is -2665.27, suggesting that each 1-ton increase in GHG per capita tends to decrease GDP per capita by $2665.27.</li></ul><ul id="1a39c371-4000-8021-88af-eaf6ff2d8885" class="bulleted-list"><li style="list-style-type:disc">Contrastingly, for each unit increase in Annual CO2, GDP per capita increases by approximately 0.0005665 units. This suggests that higher CO2 emissions are positively associated with increased GDP per capita.</li></ul><p id="1a39c371-4000-8085-98a3-f5f04762f08e" class="">
+</p><p id="1a39c371-4000-8032-a958-e2f36403499a" class="">
+</p><h3 id="1a39c371-4000-80b5-baa6-e88045903858" class=""><strong>Analysis 2: Conclusion and limitations</strong></h3><p id="1a39c371-4000-80e5-a016-d50575653351" class="">
+</p><p id="1a39c371-4000-800b-92df-d46c6bbafb54" class="">      The annual GHG emissions tend to reduce GDP per capita in NZ. Although GDP per capita has a high positive correlation with Annual GHG emissions, it has a negative correlation with Annual CO2 emissions in New Zealand. Moreover, 95% variation in GDP per capita (dependent variable) can be explained by Annual GHG, Annual CO2 and GHG per capita emissions (independent variables).</p><p id="1a39c371-4000-8075-affb-d08cf2a53ec3" class="">While all three variables are statistically significant to GDP per capita in New Zealand, they can only explain 95% of the variation in GDP per capita. Adding more vital factors may provide a more comprehensive overview of how each affects GDP per capita.</p><p id="1a39c371-4000-8083-8382-f01d4ff07bad" class="">
+</p><p id="1a39c371-4000-8005-b02e-dca885cc1556" class="">
+</p><h2 id="1a39c371-4000-8051-a34b-fa0d2c76c66e" class=""><em><strong>Analysis 3 - Descriptive statistics, correlation, and regression analysis of GDP per capita, Annual GHG and GHG emissions from various </strong></em></h2><p id="1a39c371-4000-80f2-ba2a-e1489a643c1a" class="">
+</p><p id="1a39c371-4000-800a-9df2-fe73e38d1b4e" class="">Since the Analysis 2 results suggest that Annual GHG has a significant relation with GDP per capita, the report further conducts a correlation and regression analysis to check GHGs from which sectors in New Zealand highly associate with GDP per capita. </p><p id="1a39c371-4000-8038-bdfa-c499304034cd" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8045-9872-f2dad90df96c" class="code"><code class="language-R">#### Exploring GDP and Sector wise GHG in NZ to see which sector significantly impacts the GDP
+
+```{r}
+
+#merging the GDP and Sector wise GHG emission data
+
+gdp_sec_ghg &lt;- left_join(gdp_pc, ghg_sector, by = &quot;Year&quot;) 
+gdp_sec_ghg
+
+colnames(ann_ghg) &lt;- c(&quot;Year&quot;, &quot;Annual_GHG&quot;)
+
+gdp_sec_ghg &lt;- left_join(ann_ghg, gdp_sec_ghg, by = &quot;Year&quot;)
+gdp_sec_ghg
+
+gdp_sec_ghg$Country &lt;- NULL  #removed country column as it is not needed
+
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8009-a66a-f846c000b665" class="code"><code class="language-R">```{r}
+#rearranging columns in gdp_sec_ghg
+
+gdp_sec_ghg &lt;- gdp_sec_ghg %&gt;%
+  select(Year, `GDP per capita`, everything())
+ 
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8007-b1e9-dc7e6e10484b" class="code"><code class="language-R">#checking if there are any missing values 
+
+sum(is.na(gdp_sec_ghg))
+
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80be-865f-e01f7fe2338a" class="code"><code class="language-R">```{r}
+
+#handling missing values
+
+colnames(gdp_sec_ghg)
+gdp_sec_ghg &lt;- clean_names(gdp_sec_ghg)
+
+gdp_sec_ghg &lt;- gdp_sec_ghg[1:31, ] #dropped year 2021 and 2022 as no imputation method like mice and amelia worked due to high colinearity between columns
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8040-a7a2-f0464a2d3646" class="code"><code class="language-R">```{r}
+#descriptive statistics
+
+
+summary_gdp_sec_ghg &lt;- data.frame(
+  Variable = colnames(gdp_sec_ghg)[-1],  # Exclude &#x27;Year&#x27;
+  N = nrow(gdp_sec_ghg),
+  Mean = sapply(gdp_sec_ghg[-1], mean, na.rm = TRUE),
+  Median = sapply(gdp_sec_ghg[-1], median, na.rm = TRUE),
+  SD = sapply(gdp_sec_ghg[-1], sd, na.rm = TRUE),
+  Min = sapply(gdp_sec_ghg[-1], min, na.rm = TRUE),
+  Max = sapply(gdp_sec_ghg[-1], max, na.rm = TRUE)
+)
+print(summary_gdp_sec_ghg)
+```
+</code></pre><p id="1a39c371-4000-803c-b036-d25b294eeda4" class="">
+</p><figure id="1a39c371-4000-80fe-9990-d6e634a5cbc4" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%209.png"><img style="width:709.9644775390625px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%209.png"/></a></figure><p id="1a39c371-4000-8078-bc24-d30415ad0b25" class=""><em>Descriptive statistics</em></p><p id="1a39c371-4000-807c-9197-cc593c40c270" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80e1-8635-cdead2ec5793" class="code"><code class="language-R">```{r}
+
+#### Correlation analysis #### 
+
+ gdp_sec_ghg_corr &lt;- gdp_sec_ghg %&gt;%
+  select(gdp_per_capita, annual_ghg, greenhouse_gas_emissions_from_agriculture, greenhouse_gas_emissions_from_land_use_change_and_forestry, greenhouse_gas_emissions_from_waste, greenhouse_gas_emissions_from_buildings, greenhouse_gas_emissions_from_industry, greenhouse_gas_emissions_from_manufacturing_and_construction, greenhouse_gas_emissions_from_transport, greenhouse_gas_emissions_from_electricity_and_heat, fugitive_emissions_of_greenhouse_gases_from_energy_production, greenhouse_gas_emissions_from_other_fuel_combustion, greenhouse_gas_emissions_from_bunker_fuels)
+
+gdp_sec_ghg_corr_matrix &lt;- cor(gdp_sec_ghg_corr, use = &quot;complete.obs&quot;)
+
+kable(gdp_sec_ghg_corr_matrix, digits = 2, caption = &quot;Correlation Matrix for GDP, Annnual GHG, and GHG emissions from multiple sectors in NZ&quot;)
+
+
+
+### Correlation heatmap
+
+```{r}
+
+correlation_gdp_ghg_sec &lt;- melt(gdp_sec_ghg_corr_matrix)
+
+ggplot(data = correlation_gdp_ghg_sec, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = &quot;white&quot;) +
+  scale_fill_gradient2(low = &quot;red&quot;, high = &quot;green&quot;, mid = &quot;yellow&quot;, 
+                       midpoint = 0, limit = c(-1, 1), space = &quot;Lab&quot;,
+                       name = &quot;Correlation&quot;) +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, size = 6, hjust = 1),
+        axis.text.y = element_text(size = 6)) +
+  labs(title = &quot;Correlation Heatmap for GDP, Annual GHG and Sectorwisew GHG Emissions Data&quot;, x = &quot;&quot;, y = &quot;&quot;)
+
+```</code></pre><figure id="1a39c371-4000-8059-b535-c5967a4714e1" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2010.png"><img style="width:709.9928588867188px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2010.png"/></a></figure><p id="1a39c371-4000-8079-9311-c3c9e635394c" class=""><em>Correlation analysis for GDP per capita, Annual GHG and GHG emissions from different sectors of NZ</em></p><p id="1a39c371-4000-8022-9631-c67a31cb1a70" class="">
+</p><figure id="1a39c371-4000-80a0-8c1c-eab2d38f291e" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2011.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2011.png"/></a></figure><p id="1a39c371-4000-8017-b6b4-e61e5e99e1c7" class=""><em>Correlation matrix for GDP per capita, Annual GHG and GHG emissions from different sectors of NZ</em></p><p id="1a39c371-4000-807a-b60f-ce2192ae136d" class="">
+</p><blockquote id="1a39c371-4000-802b-ac5e-ff2e47051c71" class=""><strong>Key findings</strong></blockquote><ul id="1a39c371-4000-80e9-b299-ee29332a5bab" class="bulleted-list"><li style="list-style-type:disc">Annual GHG emissions have a high mean (65800166).</li></ul><ul id="1a39c371-4000-80af-a1cd-d6dd7788e6b8" class="bulleted-list"><li style="list-style-type:disc">GDP per capita highly correlates with GHG emissions from the transport sector 0.9717801, suggesting the emissions from the transport sector increase GDP per capita in New Zealand.</li></ul><ul id="1a39c371-4000-800e-9d87-e03d4e6adb01" class="bulleted-list"><li style="list-style-type:disc">Annual GHG (-0.3180) negatively correlates with GDP per capita, implying an overall increase in GHG emissions tends to decrease GDP per capita.</li></ul><ul id="1a39c371-4000-8036-87fa-f9d613c50c91" class="bulleted-list"><li style="list-style-type:disc">There is a positive correlation between GHG emissions from industry and GDP per capita (0.8592), suggesting that industrial activities contribute to GDP per capita alongside the creation of greenhouse emissions.</li></ul><ul id="1a39c371-4000-8034-9ba0-db2b35017739" class="bulleted-list"><li style="list-style-type:disc">GHH emissions from land use change and forestry (0.8637712) strongly correlate with GDP per capita, suggesting deforestation or land development is strongly linked to economic growth with a significant increase in GHG emissions.</li></ul><ul id="1a39c371-4000-8002-9b8a-f16b8ba256a5" class="bulleted-list"><li style="list-style-type:disc">GHG emissions from waste (-0.2055321) negatively correlated with GDP per capita, indicating that waste emissions tend to decrease GDP per capita.</li></ul><p id="1a39c371-4000-805c-8638-f56269f92220" class="">
+</p><p id="1a39c371-4000-80e4-81b6-e0ad67e6b049" class="">
+</p><p id="1a39c371-4000-803f-8de9-f1148a0bae86" class="">The regression analysis further explores the relationship between emissions from each sector and GDP per capita.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-803c-81cf-c7263c32d633" class="code"><code class="language-R">#Regression analysis for GDP, Annual GHG and Sectorwise emissions in NZ 
+
+colnames(gdp_sec_ghg)
+
+gdp_ghg_sec_reg &lt;- lm(gdp_per_capita ~ annual_ghg +
+  greenhouse_gas_emissions_from_agriculture +
+  greenhouse_gas_emissions_from_land_use_change_and_forestry +
+  greenhouse_gas_emissions_from_waste +
+  greenhouse_gas_emissions_from_buildings +
+  greenhouse_gas_emissions_from_industry +
+  greenhouse_gas_emissions_from_manufacturing_and_construction +
+  greenhouse_gas_emissions_from_transport +
+  greenhouse_gas_emissions_from_electricity_and_heat +
+  fugitive_emissions_of_greenhouse_gases_from_energy_production +
+  greenhouse_gas_emissions_from_other_fuel_combustion +
+  greenhouse_gas_emissions_from_bunker_fuels,
+  data = gdp_sec_ghg)
+
+summary(gdp_ghg_sec_reg)
+
+kable(summary(gdp_ghg_sec_reg)$coefficients, caption = &quot;GDP, Annual GHG and Sectorwise GHG Regression Coefficients&quot;)
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared &lt;- summary(gdp_ghg_sec_reg)$adj.r.squared
+multiple_r &lt;- summary(gdp_ghg_sec_reg)$r.squared
+f_statistic &lt;- summary(gdp_ghg_sec_reg)$fstatistic[1]
+df1 &lt;- summary(gdp_ghg_sec_reg)$fstatistic[2]
+df2 &lt;- summary(gdp_ghg_sec_reg)$fstatistic[3]
+f_p_value &lt;- pf(f_statistic, df1, df2, lower.tail = FALSE)
+
+cat(&quot;Adjusted R-squared:&quot;, adjusted_r_squared, &quot;\n&quot;)
+cat(&quot;Multiple R:&quot;, multiple_r, &quot;\n&quot;)
+cat(&quot;F-statistic:&quot;, f_statistic, &quot;\n&quot;)
+cat(&quot;F-statistic p-value:&quot;, f_p_value, &quot;\n&quot;)
+
+```</code></pre><figure id="1a39c371-4000-80f1-8527-f34c06df9ab9" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2012.png"><img style="width:709.9928588867188px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2012.png"/></a></figure><p id="1a39c371-4000-80ad-8c3e-c67b5c3187bd" class=""><em>Regression analysis of GDP per capita, Annual GHG and Sectorwise GHG emissions - 1</em></p><p id="1a39c371-4000-80f5-a8b6-cb1889f11c81" class="">
+</p><figure id="1a39c371-4000-8096-802c-f3872a08ba5e" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2013.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2013.png"/></a></figure><p id="1a39c371-4000-8006-b7c3-e20f3cbea551" class=""><em>Regression analysis of GDP per capita, Annual GHG and Sector wise GHG emissions - 2</em></p><p id="1a39c371-4000-803b-a3d9-d606d1191339" class="">
+</p><blockquote id="1a39c371-4000-803f-9702-d94661eb9065" class=""><strong>Key findings</strong></blockquote><ul id="1a39c371-4000-8050-9d69-e844f28f5c05" class="bulleted-list"><li style="list-style-type:disc">Adjusted R square value is 0.99, implying that independent variables Annual GHG and GHG emissions from other sectors in NZ can explain a 99% variation in GDP per capita.</li></ul><ul id="1a39c371-4000-80d0-96b9-db8cbe88f2c6" class="bulleted-list"><li style="list-style-type:disc">Multiple R is 0.994, showing a strong relationship between dependent and independent variables.</li></ul><ul id="1a39c371-4000-8057-81d8-ec9b1351b38d" class="bulleted-list"><li style="list-style-type:disc">The f-statistic p-value is 1.908761e-17, suggesting the model is the best fit.</li></ul><ul id="1a39c371-4000-80af-9202-f0410ca0be1e" class="bulleted-list"><li style="list-style-type:disc">The P-value of GHG emissions from the transport sector (0.0000008) and industry (0.0142107) is less than the significance level of 5%, suggesting transport and industry emissions are statistically significant to GDP per capita in NZ.</li></ul><ul id="1a39c371-4000-8065-bfcd-e5a50bd4a353" class="bulleted-list"><li style="list-style-type:disc">Most independent variables demonstrate no statistical significance in GDP per capita, suggesting no firm evidence of whether the variables influence GDP per capita in NZ.</li></ul><p id="1a39c371-4000-8026-a418-e83aa33a5844" class="">
+</p><p id="1a39c371-4000-8051-9fa2-d1472eafd8da" class="">
+</p><h3 id="1a39c371-4000-8031-83ab-df047c1fda97" class=""><strong>Analysis 3: Conclusion and limitations</strong></h3><p id="1a39c371-4000-800b-b539-f42e261f1c75" class="">The correlation analysis shows that GDP per capita positively correlates with emissions from transport and land use change and forestry. However, Regression analysis demonstrates that although the adjusted R square explains 99% of the variation in GDP per capita caused by Annual GHG emissions and GHG emissions from various sectors, only emissions from transport and industry are statistically significant. Therefore, more variables would be needed to refine the model further and study their impact on GDP per capita in NZ.</p><p id="1a39c371-4000-8028-aeb5-e2860f980b5e" class="">
+</p><p id="1a39c371-4000-807d-9d12-ed7db3224a4d" class="">
+</p><h2 id="1a39c371-4000-8040-b932-f3f1ce4a8d18" class=""><em><strong>Analysis 4 - Descriptive statistics, correlation and regression analysis of GDP per capita, Annual CO2, and CO2 emissions from various sources in NZ. </strong></em></h2><p id="1a39c371-4000-807f-a1ce-de6901c2115a" class="">
+</p><p id="1a39c371-4000-8079-99da-e5be353c0678" class="">Since Analysis 1 concluded that CO2 emissions are statistically significant to Annual GHG emissions in NZ, the paper further explores the relationship between Annual CO2 emissions and top CO2 emission sources and studies how they influence GDP per capita in NZ.</p><p id="1a39c371-4000-80bc-bbd9-ff0ebe899280" class="">
+</p><p id="1a39c371-4000-80af-9cb7-d066adab2a25" class="">The data preparation steps are mentioned in the R file attached to this report.</p><p id="1a39c371-4000-8022-8347-e0d24bb346cf" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-801c-8d51-c77a40b864cb" class="code"><code class="language-R">#### Comparing GDP per capita, Annual CO2 emissions and sector
+
+```{r}
+
+#preparing the data 
+
+#joining the datasets and rearranging the columns
+
+gdp_sec_co2 &lt;- left_join(gdp_pc, co2_sector, by = &quot;Year&quot;) 
+gdp_sec_co2
+
+gdp_sec_co2 &lt;- left_join(ann_co2, gdp_sec_co2, by = &quot;Year&quot;)
+gdp_sec_co2 &lt;- clean_names(gdp_sec_co2)
+
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8072-82c8-f66800a5c8d5" class="code"><code class="language-R">```{r}
+#renaming columns for convention
+
+colnames(gdp_sec_co2) &lt;- c(&quot;year&quot;, &quot;annual_co2&quot;, &quot;gdp_per_capita&quot;, &quot;industry&quot;, &quot;cement&quot;, &quot;flaring&quot;, &quot;gas&quot;, &quot;oil&quot;, &quot;coal&quot;)
+
+gdp_sec_co2 &lt;- gdp_sec_co2 %&gt;%
+  select(year, gdp_per_capita, everything())
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8087-9bc9-ecddca443241" class="code"><code class="language-R">```{r}
+
+#checking if there are any missing values 
+
+sum(is.na(gdp_sec_co2))
+
+```</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-80a7-8d2b-c173e643b126" class="code"><code class="language-R">```{r}
+#descriptive statistics
+
+summary_gdp_sec_co2 &lt;- data.frame(
+  Variable = colnames(gdp_sec_co2)[-1],  # Exclude &#x27;Year&#x27;
+  N = nrow(gdp_sec_co2),
+  Mean = sapply(gdp_sec_co2[-1], mean, na.rm = TRUE),
+  Median = sapply(gdp_sec_co2[-1], median, na.rm = TRUE),
+  SD = sapply(gdp_sec_co2[-1], sd, na.rm = TRUE),
+  Min = sapply(gdp_sec_co2[-1], min, na.rm = TRUE),
+  Max = sapply(gdp_sec_co2[-1], max, na.rm = TRUE)
+)
+print(summary_gdp_sec_co2)
+```</code></pre><figure id="1a39c371-4000-8099-8872-f7f544d5deb1" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2014.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2014.png"/></a></figure><p id="1a39c371-4000-80fa-954b-ebeca0ab66fc" class=""><em>Descriptive statistics</em></p><p id="1a39c371-4000-806c-a7a4-d541698b05b2" class="">
+</p><p id="1a39c371-4000-80c1-8381-da1243096fb1" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8004-a801-da7e9c9b722d" class="code"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">#Correlation Analysis for GDP per capita, Annual CO2 emissions and cumulative CO2 emissions from varios sources in NZ
+
+colnames(gdp_sec_co2)
+
+gdp_sec_co2 &lt;- clean_names(gdp_sec_co2)
+
+ gdp_sec_co2_corr &lt;- gdp_sec_co2 %&gt;%
+  select(gdp_per_capita, annual_co2, industry, cement, flaring, gas, oil, coal)
+
+gdp_sec_co2_corr_matrix &lt;- cor(gdp_sec_co2_corr, use = &quot;complete.obs&quot;)
+print(gdp_sec_co2_corr_matrix)
+
+kable(gdp_sec_co2_corr_matrix, digits = 2, caption = &quot;Correlation Matrix for GDP, Annnual CO2, and Cumulative CO2 emissions from multiple sectors in NZ&quot;)
+
+
+#correlation analysis 
+
+correlation_gdp_ann_sec &lt;- melt(gdp_sec_co2_corr_matrix)
+
+ggplot(data = correlation_gdp_ann_sec, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = &quot;white&quot;) +
+  scale_fill_gradient2(low = &quot;red&quot;, high = &quot;green&quot;, mid = &quot;yellow&quot;, 
+                       midpoint = 0, limit = c(-1, 1), space = &quot;Lab&quot;,
+                       name = &quot;Correlation&quot;) +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, size = 6, hjust = 1),
+        axis.text.y = element_text(size = 6)) +
+  labs(title = &quot;Correlation Heatmap for GDP, Annual CO2 and Cumulative CO2 Emissions from various sources&quot;, x = &quot;&quot;, y = &quot;&quot;)
+</code></pre><figure id="1a39c371-4000-8097-8762-ff9d424898a8" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2015.png"><img style="width:709.9928588867188px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2015.png"/></a></figure><p id="1a39c371-4000-80e3-9419-e1974369dfbb" class=""><em>Correlation analysis of GDP per capita, Annual CO2 and cumulative CO2 emissions from various sources in NZ</em>   </p><p id="1a39c371-4000-8035-93da-cd1a0d531cc6" class="">
+</p><figure id="1a39c371-4000-805a-94b3-eb3289a3aad6" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2016.png"><img style="width:709.9928588867188px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2016.png"/></a></figure><p id="1a39c371-4000-8026-9fba-e6865358707a" class=""><em>Correlation matrix of GDP per capita, Annual CO2 and cumulative CO2 emissions from various sources in NZ</em></p><p id="1a39c371-4000-8076-9b71-e06016f84c01" class="">
+</p><blockquote id="1a39c371-4000-80ad-8673-c3d3a28047a9" class=""><strong>Key findings</strong></blockquote><ul id="1a39c371-4000-80af-ae18-ca1d352045dc" class="bulleted-list"><li style="list-style-type:disc">GDP per capita highly correlates with cumulative CO2 emissions from various sectors (all near 1). This suggests a strong positive relationship that indicates that if GDP per capita increases, the CO2 emissions from these sources also tend to increase.</li></ul><ul id="1a39c371-4000-8053-8e50-e7ec1ae384db" class="bulleted-list"><li style="list-style-type:disc">Annual CO2 emissions (0.45) have a weak positive correlation with GDP per capita.</li></ul><p id="1a39c371-4000-80c1-a950-e57471d5ceb3" class="">
+</p><p id="1a39c371-4000-8092-a181-de81664c6c8f" class="">Next, a regression analysis is conducted to analyze how independent variables impact GDP per capita in NZ.</p><p id="1a39c371-4000-8010-8164-d079dfdd6fde" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-8005-95a8-eea08b0f44b1" class="code"><code class="language-R">#### Regression Analysis
+
+```{r}
+
+colnames(gdp_sec_co2)
+
+gdp_ann_sec_reg &lt;- lm(gdp_per_capita ~ annual_co2 +
+  industry + cement + flaring + gas + oil + coal,
+  data = gdp_sec_co2)
+
+summary(gdp_ann_sec_reg)
+
+kable(summary(gdp_ann_sec_reg)$coefficients, caption = &quot;GDP, Annual CO2 and Cumulative CO2 Emissions from various sources&quot;)
+
+#extracting values adjusted R, multiple R and f-statistics from the model 
+adjusted_r_squared &lt;- summary(gdp_ann_sec_reg)$adj.r.squared
+multiple_r &lt;- summary(gdp_ann_sec_reg)$r.squared
+
+cat(&quot;Adjusted R-squared:&quot;, adjusted_r_squared, &quot;\n&quot;)
+cat(&quot;Multiple R:&quot;, multiple_r, &quot;\n&quot;)
+
+```</code></pre><figure id="1a39c371-4000-8018-99c1-f549bfc543c6" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2017.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2017.png"/></a></figure><p id="1a39c371-4000-8035-9e05-e9b23b366797" class=""><em>Regression analysis for GDP per capita, Annual CO2 and Cumulative CO2 emissions from various sources - 1</em></p><p id="1a39c371-4000-80f0-94f6-e373bc53ee88" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a39c371-4000-803e-9d56-f2ca5424da59" class="code"><code class="language-R">```{r}
+
+gdp_sec_co2$predicted_gdp_per_capita &lt;- predict(gdp_ann_sec_reg, newdata = gdp_sec_co2)
+
+# Plotting the actual values against the predicted values
+ggplot(gdp_sec_co2, aes(x = gdp_per_capita, y = predicted_gdp_per_capita)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, color = &quot;blue&quot;) +
+  labs(title = &quot;Actual vs. Predicted GDP per capita&quot;,
+       x = &quot;Actual GDP per capita&quot;,
+       y = &quot;Predicted GDP per capita&quot;)
+```</code></pre><figure id="1a39c371-4000-8061-8ae5-e118664334b2" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2018.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2018.png"/></a></figure><p id="1a39c371-4000-80db-afbb-d4d46acc0563" class=""><em>Regression analysis for GDP per capita, Annual CO2 and Cumulative CO2 emissions from various sources - 2</em></p><p id="1a39c371-4000-803d-9216-e679d666edd1" class="">
+</p><blockquote id="1a39c371-4000-80bc-9c36-c7bc7f1c55cd" class=""><strong>Key findings</strong></blockquote><ul id="1a39c371-4000-8020-a55b-d946c41c7c3b" class="bulleted-list"><li style="list-style-type:disc">Adjusted R square suggests that cumulative CO2 emissions from various sources in NZ can explain a 98% variation in GDP per capita.</li></ul><ul id="1a39c371-4000-803f-b042-da47f8015e14" class="bulleted-list"><li style="list-style-type:disc">The P-values illustrate that CO2 emissions from flaring (0.000917), industry (0.008273), oil (0.008245), coal (0.004926) and gas (0.0247793) are statistically significant to GDP per capita at 5% significance level.</li></ul><ul id="1a39c371-4000-80d3-9100-c4ee78ed8e7c" class="bulleted-list"><li style="list-style-type:disc">The p-value of the f-statistic is 2.2e-16, suggesting the model is the best fit and some independent variables are statistically significant with GDP per capita.</li></ul><ul id="1a39c371-4000-8064-9c08-fae6d807b6e8" class="bulleted-list"><li style="list-style-type:disc">For each unit increase in flaring, coal, and gas, the GDP per capita decreases by 0.0016310, 0.0003142, and 0.0003775.</li></ul><p id="1a39c371-4000-80a0-8232-dd8cf21c89da" class="">
+</p><h3 id="1a39c371-4000-8030-b0e0-c1966505fc7e" class=""><strong>Analysis 4: Conclusion and limitations</strong></h3><p id="1a39c371-4000-80bf-93b6-cef5853a8744" class="">     The correlation analysis demonstrates that most cumulative CO2 emissions from various sectors highly influence GDP per capita in NZ. Moreover, regression analysis shows that cumulative emissions from flaring, industry, oil, coal, and gas are statistically significant in NZ&#x27;s GDP per capita. The correlation analysis and regression analysis show that cumulative CO2 from various sectors significantly influences GDP per capita in NZ. However, more variables may be needed to refine the model and study their impact on GDP per capita.</p><p id="1a39c371-4000-80d7-a108-eac07893c63c" class="">
+</p><p id="1a39c371-4000-80f6-b862-c81b787ebfd4" class="">
+</p><h2 id="1a39c371-4000-80f5-acdc-c866e9e214c0" class=""><em><strong>Analysis 5 - Autocorrelation and Partial Autocorrelation of GDP per capita, Annual GHG, Annual CO2 and GHG per capita</strong></em></h2><p id="1a49c371-4000-80f9-9363-c1c6ae0b4f19" class="">
+</p><p id="1a49c371-4000-80f7-9c87-dc0cd217be61" class="">The report further employs Autocorrelation and Partial correlation analysis to analyze the relationship between the time series data. Autocorrelation measures if past values influence future values (Dondurur, 2018). Partial Autocorrelation helps identify lags by controlling the effects of intervening lags (Mariano &amp; Ozmucur, 2020).</p><p id="1a49c371-4000-8093-a20b-e303ce877a13" class="">
+</p><p id="1a49c371-4000-8089-a5db-cb015e2af12a" class="">Since this paper focuses on time series data of variables like GDP per capita, Annual GHG, Annual CO2 and GHG per capita in New Zealand, it makes sense to employ Autocorrelation and Partial Autocorrelation.</p><p id="1a49c371-4000-8094-bd31-def5a00c850b" class="">
+</p><p id="1a49c371-4000-801a-8684-e97f516e0a02" class="">1. GHG per capita emissions over time in NZ</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8090-a648-de0c3bedd203" class="code"><code class="language-R">#### autocorrelation and partial autocorrelation analysis
+
+```{r}
+
+#GHG per capita
+
+ghg_pc_ac &lt;- read.csv(&quot;GHG_per_capita.csv&quot;)
+
+ghg_pc_ac &lt;- ghg_pc_ac %&gt;%
+  filter(Entity == &quot;New Zealand&quot;)
+```
+
+```{r}
+
+ghg_per_capita_ts &lt;- ts(ghg_pc_ac$Per.capita.greenhouse.gas.emissions.in.CO..equivalents, start=min(ghg_pc_ac$Year), end=max(ghg_pc_ac$Year), frequency=1)
+
+autoplot(ghg_per_capita_ts) +
+  ggtitle(&quot;GHG per Capita Emissions Over Time&quot;) +
+  xlab(&quot;Year&quot;) +
+  ylab(&quot;GHG per Capita&quot;)
+
+
+#autocorrelation - AC
+
+ggAcf(ghg_per_capita_ts) +
+  ggtitle(&quot;Autocorrelation of GHG per Capita Emissions&quot;)
+
+#partial autocorrelation - PAC
+ggPacf(ghg_per_capita_ts) +
+  ggtitle(&quot;Partial Autocorrelation of GHG per Capita Emissions&quot;)
+
+
+```</code></pre><p id="1a49c371-4000-8008-a1f5-cf010b8efb25" class="">
+</p><figure id="1a49c371-4000-8002-ba37-d82e73b1e7b9" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2019.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2019.png"/></a></figure><p id="1a49c371-4000-80e4-bd0d-cc5f9c26909a" class=""><em>Fig 1</em></p><p id="1a49c371-4000-80bb-ad74-d27bcf5b62d2" class="">
+</p><figure id="1a49c371-4000-8081-a3a6-cc8085dcab61" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2020.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2020.png"/></a></figure><p id="1a49c371-4000-8036-9de3-f30a0774fba0" class=""><em>Fig 1.1</em></p><p id="1a49c371-4000-80e4-a156-eb771297c1d5" class="">
+</p><figure id="1a49c371-4000-801a-86b9-f1035ee699a4" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2021.png"><img style="width:940px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2021.png"/></a></figure><p id="1a49c371-4000-803b-9aa3-f849493459b8" class=""><em>Fig 1.2</em></p><p id="1a49c371-4000-80b5-94b7-dfb301475e46" class="">
+</p><blockquote id="1a49c371-4000-802e-85d2-dfb8cf14da05" class=""><strong>Key findings</strong></blockquote><ul id="1a49c371-4000-8071-8ace-efeedb66259b" class="bulleted-list"><li style="list-style-type:disc">The GHG per capita emissions chart shows a noticeable decline in emissions over time.</li></ul><ul id="1a49c371-4000-8053-937c-fdba3fdf5482" class="bulleted-list"><li style="list-style-type:disc">ACF shows that past GHG per capita emission values strongly influence future values as the plot shows positive autocorrelations up to lag 5.</li></ul><ul id="1a49c371-4000-80d5-b832-c8799dda0c4e" class="bulleted-list"><li style="list-style-type:disc">The PACF shows a significant lag at point 1.</li></ul><p id="1a49c371-4000-8031-a4cb-d56630b372e6" class="">
+</p><p id="1a49c371-4000-8002-ae26-c56d25a0724d" class="">2. GDP per capita emissions over time in NZ</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-805e-9e3d-e923b6786c89" class="code"><code class="language-R">```{r}
+#GDP per capita 
+
+gdp_pc_ac &lt;- gdp_pc
+
+```
+
+```{r}
+
+gdp_per_capita_ts &lt;- ts(gdp_pc_ac$`GDP per capita`, start=min(gdp_pc_ac$Year), end=max(gdp_pc_ac$Year), frequency=1)
+
+autoplot(gdp_per_capita_ts) +
+  ggtitle(&quot;GDP per Capita Over Time&quot;) +
+  xlab(&quot;Year&quot;) +
+  ylab(&quot;GDP per Capita&quot;)
+
+
+#autocorrelation - AC
+
+ggAcf(gdp_per_capita_ts) +
+  ggtitle(&quot;Autocorrelation of GDP per Capita&quot;)
+
+#partial autocorrelation - PAC
+ggPacf(gdp_per_capita_ts) +
+  ggtitle(&quot;Partial Autocorrelation of GDP per Capita&quot;)
+
+```</code></pre><p id="1a49c371-4000-80ae-87a1-c44840a32652" class="">
+</p><figure id="1a49c371-4000-8033-bf3e-def2e7dbd4ab" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2022.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2022.png"/></a></figure><p id="1a49c371-4000-80ed-ab7c-d5e4f7d8101f" class=""><em>Fig 2</em></p><p id="1a49c371-4000-80b6-b634-e8cce35e8b21" class="">
+</p><figure id="1a49c371-4000-8071-ab2f-f71e6053da0e" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2023.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2023.png"/></a></figure><p id="1a49c371-4000-8007-8e24-f86354cf8358" class=""><em>Fig 2.1</em></p><p id="1a49c371-4000-80bf-81f5-fd60dddf1863" class="">
+</p><figure id="1a49c371-4000-807b-af59-f874e45ff225" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2024.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2024.png"/></a></figure><p id="1a49c371-4000-800f-ada9-d94effb8b46c" class=""><em>Fig 2.2</em></p><p id="1a49c371-4000-8056-8465-f767f8de514e" class="">
+</p><blockquote id="1a49c371-4000-803a-91d6-fc14f9286eb2" class=""><strong>Key findings</strong></blockquote><ul id="1a49c371-4000-807e-a551-c0bc3b7ebe91" class="bulleted-list"><li style="list-style-type:disc">The GDP per capita trend in NZ is growing.</li></ul><ul id="1a49c371-4000-802d-91ea-d30c668db436" class="bulleted-list"><li style="list-style-type:disc">The GDP per capita values highly depend on the previous year&#x27;s values, up to lag 8.</li></ul><ul id="1a49c371-4000-80c0-a3f7-e55d7dc9e899" class="bulleted-list"><li style="list-style-type:disc">PACF suggests that the relationship between the previous GDP per capita values is minimal beyond the first lag.</li></ul><p id="1a49c371-4000-803e-82b7-f200a9edc1e6" class="">
+</p><p id="1a49c371-4000-80d4-bafe-db3238331fc7" class="">
+</p><p id="1a49c371-4000-802d-9684-eec64beb0f9d" class=""><br/>3. Annual GHG trends over time in NZ<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8051-83a7-ef559f731081" class="code"><code class="language-R">```{r}
+
+#Annual GHG Emissions 
+
+ghg_ac &lt;- read_csv(&quot;Ann-GHG-NZ.csv&quot;, show_col_types = FALSE)
+
+```
+
+```{r}
+
+ghg_ts &lt;- ts(ghg_ac$`Annual greenhouse gas emissions in CO2 equivalents`, start=min(ghg_ac$Year), end=max(ghg_ac$Year), frequency=1)
+
+autoplot(ghg_ts) +
+  ggtitle(&quot;Annual GHG Over Time&quot;) +
+  xlab(&quot;Year&quot;) +
+  ylab(&quot;GHG&quot;)
+
+
+#autocorrelation - AC
+ggAcf(ghg_ts) +
+  ggtitle(&quot;Autocorrelation of Annual GHG&quot;)
+
+#partial autocorrelation - PAC
+ggPacf(ghg_ts) +
+  ggtitle(&quot;Partial Autocorrelation of Annual GHG&quot;)
+
+```
+
+</code></pre><figure id="1a49c371-4000-80d3-8878-fb82737770cf" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2025.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2025.png"/></a></figure><p id="1a49c371-4000-8067-bac6-d304c9efdf68" class=""><em>Fig 3</em></p><p id="1a49c371-4000-8047-9efc-f7d50a8cd816" class="">
+</p><figure id="1a49c371-4000-80f5-b146-d22eae82f9dd" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2026.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2026.png"/></a></figure><p id="1a49c371-4000-80a3-ac93-f2cb3c783079" class=""><em>Fig 3.1</em></p><p id="1a49c371-4000-803c-a60d-cd743e670286" class="">
+</p><figure id="1a49c371-4000-809a-9601-cf4c3e4cdf18" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2027.png"><img style="width:709.9715576171875px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2027.png"/></a></figure><p id="1a49c371-4000-809c-873e-c99021c1493f" class=""><em>Fig 3.2</em></p><p id="1a49c371-4000-8098-a08e-d5ddaf7ee4a2" class="">
+</p><blockquote id="1a49c371-4000-8070-bf6f-d30d2c9508f1" class=""><strong>Key findings</strong></blockquote><ul id="1a49c371-4000-80ad-90a1-f7c78c7db139" class="bulleted-list"><li style="list-style-type:disc">The plot illustrates a steady increase in GHG over time, peaking in the middle of the 20th century and dropping in the later part with a high fluctuation after 2000.</li></ul><ul id="1a49c371-4000-80f2-ab2b-c5c50446743d" class="bulleted-list"><li style="list-style-type:disc">ACF shows a high degree of correlation, demonstrating that GHG emissions strongly depend on the previous year&#x27;s values.</li></ul><ul id="1a49c371-4000-804d-a454-d07a2fe92107" class="bulleted-list"><li style="list-style-type:disc">PACF shows a substantial spike on lag 1 and low correlations beyond that.</li></ul><p id="1a49c371-4000-8086-a925-fed1d4ac0f34" class="">
+</p><p id="1a49c371-4000-80c8-a8d2-e784ee139122" class=""><br/>4. Annual CO2 emissions over time in NZ<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8078-a82a-e97e04ce75ff" class="code"><code class="language-R">```{r}
+#Annual CO2 
+
+co2_ac &lt;- read_csv(&quot;Ann-CO2.csv&quot;, show_col_types = FALSE)
+
+```
+
+```{r}
+co2_ts &lt;- ts(co2_ac$`Annual CO2 emissions including land-use change`, start=min(co2_ac$Year), end=max(co2_ac$Year), frequency=1)
+
+autoplot(co2_ts) +
+  ggtitle(&quot;Annual CO2 Over Time&quot;) +
+  xlab(&quot;Year&quot;) +
+  ylab(&quot;CO2&quot;)
+
+
+#autocorrelation - AC
+
+ggAcf(co2_ts) +
+  ggtitle(&quot;Autocorrelation of Annual CO2&quot;)
+
+#partial autocorrelation - PAC
+ggPacf(co2_ts) +
+  ggtitle(&quot;Partial Autocorrelation of Annual CO2&quot;)
+
+
+```</code></pre><figure id="1a49c371-4000-80e4-9e61-d72d26f90a8a" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2028.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2028.png"/></a></figure><p id="1a49c371-4000-80ea-b9f5-db2bc934cb81" class=""><em>Fig 4</em></p><p id="1a49c371-4000-800b-a5da-c5c9c7c6bec1" class="">
+</p><figure id="1a49c371-4000-8029-9f7b-eb543b096dbc" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2029.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2029.png"/></a></figure><p id="1a49c371-4000-807d-bfe2-c1890bb7d133" class=""><em>Fig 4.1</em></p><p id="1a49c371-4000-8085-b130-c22b41959997" class="">
+</p><figure id="1a49c371-4000-80f3-9264-ca67f025de25" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2030.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2030.png"/></a></figure><p id="1a49c371-4000-80b0-99fa-d21d04a9e983" class=""><em>Fig 4.2</em></p><p id="1a49c371-4000-80ab-9307-fbafe98854d5" class="">
+</p><blockquote id="1a49c371-4000-80b2-b601-f69b20caf682" class=""><strong>Key findings</strong></blockquote><ul id="1a49c371-4000-8017-89ba-db28387fc28d" class="bulleted-list"><li style="list-style-type:disc">The plot shows a gradual increase in CO2 emissions followed by fluctuations from the mid-20th century.</li></ul><ul id="1a49c371-4000-802f-a22d-d259eb08bbd6" class="bulleted-list"><li style="list-style-type:disc">ACF illustrates a strong correlation in the initial lags followed by gradual decay over time. This suggests that CO2 emissions are highly dependent on past values.</li></ul><ul id="1a49c371-4000-8019-bfeb-cbd7d79b49de" class="bulleted-list"><li style="list-style-type:disc">PACF demonstrates a significant spike at lag 1, followed by smaller subsequent spikes, demonstrating that the most influence comes from the past.</li></ul><p id="1a49c371-4000-802a-8646-e13b9508b026" class="">
+</p><p id="1a49c371-4000-802e-9ad6-f93348966b7c" class="">
+</p><p id="1a49c371-4000-8050-8624-d827450c66a7" class="">
+</p><h2 id="1a49c371-4000-80d7-82e3-fe7791d3d334" class=""><em><strong>Analysis 6 - Forecasting GDP per capita, Annual GHG, Annual CO2 and GHG per capita for the next 5 years using ARIMA model</strong></em></h2><p id="1a49c371-4000-80bc-b3ec-c8fa7dcc7a2c" class="">
+</p><p id="1a49c371-4000-8054-a7cc-d8a7fcaa64ba" class="">Time series analysis is a part of Predictive analytics (tableau, n.d.). It helps predict future events by analyzing historical trends and patterns. Forecasting GHG and CO2 emissions can assist governments and policymakers in developing plans to achieve carbon neutrality early (Huang et al., 2023). Moreover, GDP prediction can help balance the economies by providing insights on where to invest and spend (Liberto, 2024).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8032-a46e-ea7eeaa5564b" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">ARIMA (Autoregressive integrated Moving Average) model helps in forecasting possible future values of a time series and is one of the widely used models for time series forecasting (Noble, 2024).
+</code></pre><p id="1a49c371-4000-80d4-86c0-e27b40418cc0" class="">Using the historical data, the report further predicts the following five-year values: Annual GHG, GDP per capita, GHG per capita and Annual CO2 with the help of a few ARIMA models.</p><p id="1a49c371-4000-800e-967c-c70d8343bc4c" class="">
+</p><p id="1a49c371-4000-8029-a6d6-ffc8a0140af8" class=""><br/>1. GDP per capita <br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8031-a9a9-e992df3d8f3a" class="code"><code class="language-R">```{r}
+#GDP per capita 
+
+gdp_arima &lt;- auto.arima(gdp_per_capita_ts)
+summary(gdp_arima)
+
+# Forecast for the next 5 years
+gdp_forecast &lt;- forecast(gdp_arima, h = 5)
+plot(gdp_forecast)
+
+```</code></pre><figure id="1a49c371-4000-8034-94e1-c39f07960b06" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2031.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2031.png"/></a></figure><p id="1a49c371-4000-80c3-b7ff-f6ae4b7203df" class="">
+</p><ol type="1" id="1a49c371-4000-805b-bb9b-dc9a73a3e5cf" class="numbered-list" start="2"><li>Annual GHG </li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8057-ad11-d6444f961cba" class="code"><code class="language-R">```{r}
+#Annual GHG
+
+
+ghg_arima &lt;- auto.arima(ghg_ts)
+summary(ghg_arima)
+
+# Forecast for the next 5 years
+ghg_forecast &lt;- forecast(ghg_arima, h = 5)
+plot(ghg_forecast)
+
+
+```</code></pre><figure id="1a49c371-4000-80c6-a72d-f4f3f6c736c1" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2032.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2032.png"/></a></figure><p id="1a49c371-4000-80e0-afee-c80204bece5c" class="">
+</p><ol type="1" id="1a49c371-4000-8028-a52f-c72d886cd661" class="numbered-list" start="3"><li>Annual CO2</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8096-95f0-daaa10babb47" class="code"><code class="language-R">```{r}
+#annual CO2
+
+co2_arima &lt;- auto.arima(co2_ts)
+summary(co2_arima)
+
+# Forecast for the next 5 years
+co2_forecast &lt;- forecast(co2_arima, h = 5)
+plot(co2_forecast)
+
+
+```</code></pre><figure id="1a49c371-4000-801a-8652-d6b58c47cf12" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2033.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2033.png"/></a></figure><p id="1a49c371-4000-80e3-b7e7-de1a87202f3f" class="">
+</p><ol type="1" id="1a49c371-4000-8089-a2f2-e84412a4fdf6" class="numbered-list" start="4"><li>GHG per capita</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-803f-8e42-c4c3ebe52e3a" class="code"><code class="language-R">```{r}
+
+#GHG Per capita
+
+ghg_per_capita_arima &lt;- auto.arima(ghg_per_capita_ts)
+summary(ghg_per_capita_arima)
+
+# Forecast for the next 5 years
+ghg_per_capita_forecast &lt;- forecast(ghg_per_capita_arima, h = 5)
+plot(ghg_per_capita_forecast)
+
+```</code></pre><figure id="1a49c371-4000-80b3-bcfa-fc6d420f7fc8" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2034.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2034.png"/></a></figure><p id="1a49c371-4000-806a-a2ce-ef7641aba990" class="">
+</p><blockquote id="1a49c371-4000-801a-8129-cc120e53a1b3" class=""><strong>Key findings:</strong></blockquote><ul id="1a49c371-4000-8058-ae25-fe0073229aa9" class="bulleted-list"><li style="list-style-type:disc">GDP per capita is supposed to increase, showing an upward trajectory.</li></ul><ul id="1a49c371-4000-80bc-8bfb-fdffa6f89fbd" class="bulleted-list"><li style="list-style-type:disc">Annual GHG emissions show stability due to trend and volatility.</li></ul><ul id="1a49c371-4000-80b1-b9f5-f038dd661dd0" class="bulleted-list"><li style="list-style-type:disc">Annual CO2 emissions demonstrate flatness due to peaks and drops in historical data, suggesting consistent trends.</li></ul><ul id="1a49c371-4000-8000-8a48-c5d065efba48" class="bulleted-list"><li style="list-style-type:disc">GHG per capita displays a downward trend due to a long-term decline pattern, suggesting reductions in future as well.</li></ul><p id="1a49c371-4000-808c-be2c-f2caf0c22fe3" class="">
+</p><p id="1a49c371-4000-8096-9ea4-de1cf1290779" class="">
+</p><h2 id="1a49c371-4000-80e7-94a8-d57ee0885357" class=""><em>Analysis 7 - Model performance evaluation</em>   </h2><p id="1a49c371-4000-80b0-ba62-c6e904c4457c" class="">
+</p><p id="1a49c371-4000-80c9-8964-ff90110999f2" class="">Evaluating the models is necessary to determine their accuracy (Hyndman &amp; Athanasopoulos, n.d.). The report further evaluates the models of predicted variables. </p><p id="1a49c371-4000-80dd-b8a5-d8da84d52727" class="">
+</p><ol type="1" id="1a49c371-4000-8087-9788-f9fde55d2ba7" class="numbered-list" start="1"><li>GDP per capita</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8037-907a-d7d7edbcde77" class="code"><code class="language-R"># Check residuals for GDP per Capita model
+checkresiduals(gdp_arima)</code></pre><figure id="1a49c371-4000-80b1-8438-ec6d6c4fcb7a" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2035.png"><img style="width:709.9928588867188px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2035.png"/></a></figure><p id="1a49c371-4000-80fb-8a7c-c12f55d337db" class="">
+</p><blockquote id="1a49c371-4000-805b-909c-c67db795e91a" class=""><strong>Key conclusion</strong></blockquote><p id="1a49c371-4000-808f-86ef-d78e6628b0f9" class="">The residuals exhibit no significant autocorrelation and are approximately normally distributed with some outliers and skewness. The model generally captures the data structure.</p><p id="1a49c371-4000-80b6-8390-fd599dd7d1e5" class="">
+</p><ol type="1" id="1a49c371-4000-80af-8acb-ce540d4303cb" class="numbered-list" start="2"><li>Annual GHG </li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-80e4-8873-c662ac7da933" class="code"><code class="language-R">checkresiduals(ghg_arima)</code></pre><figure id="1a49c371-4000-8034-914e-ff8c9a3df5e5" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2036.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2036.png"/></a></figure><p id="1a49c371-4000-8028-933b-de1584207dc2" class="">
+</p><blockquote id="1a49c371-4000-80f2-8b10-d39a7cd195d8" class=""><strong>Key conclusion</strong></blockquote><p id="1a49c371-4000-8049-a9e3-c0d791d222a8" class="">The residuals demonstrate no clear patterns and follow a rough normal distribution. The ACF shows minimal autocorrelation. This indicates that the model has captured the data structure well.</p><p id="1a49c371-4000-8054-80ca-fe0a34d898f7" class="">
+</p><ol type="1" id="1a49c371-4000-801d-801c-daefe3a9c9b5" class="numbered-list" start="3"><li>Annual CO2 emissions</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-802f-9f78-cd48131ad781" class="code"><code class="language-R">checkresiduals(co2_arima)</code></pre><figure id="1a49c371-4000-8055-b1d7-c5a7ef67b7af" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2037.png"><img style="width:709.9786376953125px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2037.png"/></a></figure><p id="1a49c371-4000-806d-890c-fcd313a3885c" class="">
+</p><blockquote id="1a49c371-4000-8007-ac45-ef43830f8981" class=""><strong>Key conclusion</strong></blockquote><ul id="1a49c371-4000-8059-8f12-fcaa97a451cd" class="bulleted-list"><li style="list-style-type:disc">The residuals show no clear pattern, have minimum autocorrelation, and demonstrate rough normality. This suggests that the model captured data structure effectively.</li></ul><p id="1a49c371-4000-80ad-92fd-e11896cf0be3" class="">
+</p><ol type="1" id="1a49c371-4000-8043-ad3a-c568c3131049" class="numbered-list" start="4"><li>GHG per capita emissions</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-80b8-b7bf-c532d8b5f105" class="code"><code class="language-R">checkresiduals(ghg_per_capita_arima)</code></pre><figure id="1a49c371-4000-8016-8e97-d6a1b45ab2d1" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2038.png"><img style="width:709.9857788085938px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2038.png"/></a></figure><p id="1a49c371-4000-8048-9745-fda03f9cd584" class="">
+</p><blockquote id="1a49c371-4000-80e0-b0c1-f3faeab578bc" class=""><strong>Key conclusion</strong></blockquote><p id="1a49c371-4000-8059-93bd-df0004e16e1b" class="">There is no clear pattern in the residuals. Moreover, ACF shows minimum autocorrelation and the data is approximately normally distributed. This suggests that the model captured data structure effectively with minimal residual errors.</p><p id="1a49c371-4000-80e3-9fac-d942be2eb2b5" class="">
+</p><p id="1a49c371-4000-80fe-8289-ee9408a16ae6" class="">
+</p><h2 id="1a49c371-4000-809e-a8b4-cd36563c1881" class=""><em><strong>Analysis 7 - AIC of GDP per capita, Annual GHG, CO2 and GHG per capita emissions</strong></em></h2><p id="1a49c371-4000-8085-8296-e00056019348" class="">
+</p><p id="1a49c371-4000-800e-ac49-c907aa2e235c" class="">AIC (Akaike information criterion) is used to evaluate how well the model fits the data it was created from (Bevans, 2023). This technique determines which model is the best fit for the given data. It is often used to select the best model by comparing the various models.</p><p id="1a49c371-4000-800e-b4c6-ecde331772df" class="">Below are the AIC outputs of the four variables.</p><p id="1a49c371-4000-8033-a660-f73f8033181c" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a49c371-4000-8040-9197-f3bceb76ace8" class="code"><code class="language-R">```{r}
+# Compare AIC values
+AIC(gdp_arima, ghg_arima, co2_arima, ghg_per_capita_arima)
+
+```</code></pre><figure id="1a49c371-4000-8030-89e3-cca14eaf976c" class="image"><a href="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2039.png"><img style="width:709.9928588867188px" src="GDPvsGHG-NZ-R%201a39c371400080edb3dddfdc18d911d6/image%2039.png"/></a></figure><p id="1a49c371-4000-809a-a153-ef75234d06ab" class="">
+</p><p id="1a49c371-4000-8078-ad93-ea54292d0c35" class="">
+</p><blockquote id="1a49c371-4000-80cc-9197-cba167c7cba1" class=""><strong>Key conclusion</strong></blockquote><ul id="1a49c371-4000-80d5-bacc-c811f5bd4ac9" class="bulleted-list"><li style="list-style-type:disc">The GDP per capita has the lowest AIC value (516.14), suggesting it is the most effective fitting data.</li></ul><ul id="1a49c371-4000-80dc-906d-c068745c484a" class="bulleted-list"><li style="list-style-type:disc">Annual GHG has the highest AIC value (5859.69) and the least favourable fit.</li></ul><ul id="1a49c371-4000-804b-90c1-fa6a270ad266" class="bulleted-list"><li style="list-style-type:disc">GHG per capita model has a moderately low AIC value (895.24), outperforming CO2 and GHG.</li></ul><ul id="1a49c371-4000-8086-9278-e88be42faa0d" class="bulleted-list"><li style="list-style-type:disc">GDP per capita model efficiently captures the data well.</li></ul><p id="1a49c371-4000-8050-870d-e78c93804be0" class="">
+</p><p id="1a49c371-4000-80fd-8fae-edf4677b32d0" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
