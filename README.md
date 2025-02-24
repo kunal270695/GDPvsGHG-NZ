@@ -38,10 +38,15 @@ https://ourworldindata.org/grapher/ghg-emissions-by-gas
 The data contains various gases that contribute to overall GHG emissions worldwide from 1850 to 2022. The data is filtered by country ‘New Zealand’. 
 
 
+## Code and Output: 
+
+
 
 ## Key findings and recommendations
 
   The analysis illustrates that CO2 emissions significantly contribute to GHG emissions and positively correlate with GDP per capita, although the effects are relatively small in New Zealand. Moreover, it also has a low positive correlation with GHG per capita. It also indicates that while the analysis shows CO2 contributes to GDP per capita growth, the overall emissions negatively affect the GDP growth. Cumulative CO2 emissions from key sectors like oil, gas and coal influence the country’s GDP per capita. Government and policymakers can specifically focus on introducing policies and taking measures to reduce CO2 emissions from these sectors. For instance, eliminating methane leaks and flaring can help reduce carbon from oil and gas (Kolaczkowski et al., 2024). In addition, carbon capture storage can be developed across the country, and fuels can be switched to improve energy efficiencies.
 
 The analysis also highlights that GHG emissions from transport and industry significantly contribute to New Zealand's GDP per capita. Therefore, policy guidelines should be developed to target these sectors' emissions to balance environmental sustainability and economic growth. 
+
+
 
