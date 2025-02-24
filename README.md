@@ -39,7 +39,7 @@ The data contains various gases that contribute to overall GHG emissions worldwi
 
 
 
-## [Code and Output File](https://github.com/kunal270695/GDPvsGHG-NZ/blob/main/GDPvsGHG-NZ-R.html)
+## [Code and Output File](https://github.com/kunal270695/GDPvsGHG-NZ/blob/main/GHGvsGDP-R1.pdf)
 
 
 
