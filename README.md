@@ -38,6 +38,14 @@ https://ourworldindata.org/grapher/ghg-emissions-by-gas
 The data contains various gases that contribute to overall GHG emissions worldwide from 1850 to 2022. The data is filtered by country ‘New Zealand’. 
 
 
+## Language and tools
+
+* R Programming
+* R Studio
+* R Markdown
+* Notion
+
+
 
 ## [Code and Output File](https://github.com/kunal270695/GDPvsGHG-NZ/blob/main/GHGvsGDP-R1.pdf)
 
